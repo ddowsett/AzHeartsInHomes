@@ -196,6 +196,10 @@ const structuredData = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
+  alternates: {
+    canonical: "/",
+  },
+
   title: {
     default: "AZ Hearts In Homes | Phoenix AZ Real Estate",
     template: "%s | AZ Hearts In Homes",
