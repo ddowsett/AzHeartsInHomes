@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   title: "Phoenix AZ Home Buyer Realtor | AZ Hearts In Homes",
   description:
     "Work with Darek Dowsett when buying a home in Phoenix and the Greater Phoenix area. Get personal guidance, professional negotiation, and full-service representation from search through closing.",
+  alternates: {
+    canonical: "/buyers",
+  },
 };
 
 const HOME_SEARCH_URL =
