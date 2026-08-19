@@ -1,76 +1,64 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { SectionHeading } from "@/components/shared/SectionHeading";
 
 export function Story() {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-white py-28">
       <div className="mx-auto grid max-w-7xl items-center gap-20 px-6 lg:grid-cols-2">
         {/* Left */}
-        <div className="relative">
-          <div className="absolute -left-6 -top-6 h-full w-full rounded-[2rem] bg-stone-100" />
-
-          <div className="relative overflow-hidden rounded-[2rem] shadow-xl">
+        <div className="flex justify-center">
+          <div className="overflow-hidden rounded-[2rem] bg-card p-2 shadow-2xl">
             <Image
               src="/images/headshot.jpg"
-              alt="AZ Hearts In Homes"
-              width={900}
-              height={900}
-              className="w-full bg-white p-16 object-contain"
+              alt="Darek - AZ Hearts In Homes"
+              width={650}
+              height={850}
+              className="rounded-[1.75rem]"
             />
           </div>
         </div>
 
         {/* Right */}
         <div>
-          <SectionHeading
-            centered={false}
-            eyebrow="A Different Approach"
-            title="You're not hiring someone to sell a house."
-            description="You're choosing someone to guide you through one of the biggest financial and emotional decisions you'll ever make."
-          />
+          <p className="text-sm font-semibold uppercase tracking-[0.35em] text-accent">
+            Meet Darek
+          </p>
 
-          <div className="space-y-6 text-lg leading-8 text-stone-600">
-            <p>
-              Every buyer has different priorities.
-              Every seller has a different reason for moving.
-              Every family has its own story.
-            </p>
+          <h2 className="mt-5 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+            More Than A Transaction.
+          </h2>
 
-            <p>
-              That's why I believe real estate should never feel rushed or
-              transactional. My first responsibility is to understand what
-              matters most to you—not simply show homes or list a property.
-            </p>
+          <p className="mt-8 text-xl leading-9 text-muted-foreground">
+            Buying or selling a home is one of the biggest financial decisions
+            you'll ever make.
+          </p>
 
-            <p>
-              Together we'll create a strategy that fits your goals, communicate
-              openly throughout the process, and make decisions based on facts
-              instead of pressure.
-            </p>
+          <p className="mt-6 text-lg leading-8 text-muted-foreground">
+            My job isn't simply to help you buy or sell a house. It's to provide
+            honest guidance, clear communication, and the knowledge you need to
+            make confident decisions from beginning to end.
+          </p>
 
-            <p>
-              Whether you're purchasing your first home, moving across town,
-              downsizing, or preparing to sell a home you've loved for years,
-              you'll always know someone is looking out for your best interests.
-            </p>
-          </div>
+          <p className="mt-6 text-lg leading-8 text-muted-foreground">
+            Every client has different goals, priorities, and concerns. That's
+            why I take the time to understand your situation before recommending
+            a strategy that's right for you.
+          </p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <p className="mt-6 text-lg leading-8 text-muted-foreground">
+            From our first conversation through closing—and long after you've
+            received the keys—I'll be your trusted real estate advisor, not just
+            another agent.
+          </p>
+
+          <div className="mt-10">
             <Link href="/about">
               <Button size="lg">
-                Learn More About Me
-              </Button>
-            </Link>
-
-            <Link href="/contact">
-              <Button
-                size="lg"
-                variant="outline"
-              >
-                Schedule a Conversation
+                Learn More About Darek
               </Button>
             </Link>
           </div>

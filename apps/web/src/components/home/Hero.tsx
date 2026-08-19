@@ -5,135 +5,110 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 
+const IDX_URL =
+  "https://homesmart.com/real-estate-agent/HSAZ001/Darek-Dowsett/bc25aac8-ae7c-2f03-4438-5c175f718779";
+
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-stone-50 via-white to-stone-100">
+    <section className="relative overflow-hidden bg-background">
       {/* Background Accent */}
-      <div className="absolute inset-0">
-        <div className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-orange-100/30 blur-3xl" />
-        <div className="absolute right-0 bottom-0 h-[28rem] w-[28rem] rounded-full bg-amber-100/40 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-40 top-20 h-[28rem] w-[28rem] rounded-full bg-amber-100/40 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-[32rem] w-[32rem] rounded-full bg-orange-100/30 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-20 px-6 py-24 lg:grid-cols-2 lg:py-32">
-        {/* Left Side */}
+      <div className="relative mx-auto grid max-w-7xl gap-20 px-6 pt-16 pb-24 lg:grid-cols-2 lg:items-center">
+        {/* Left Content */}
         <div>
-          <div className="mb-8 flex items-center gap-4">
-            <Image
-              src="/images/hearthome.png"
-              alt="AZ Hearts In Homes"
-              width={72}
-              height={72}
-              priority
-              className="rounded-full shadow-lg"
-            />
-
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-600">
-                AZ Hearts In Homes
-              </p>
-
-              <p className="text-sm text-stone-500">
-                Real Estate With Heart.
-              </p>
-            </div>
-          </div>
-
-          <h1 className="max-w-xl text-5xl font-bold leading-tight tracking-tight text-stone-900 md:text-6xl">
-            Helping You Find More Than a House.
-          </h1>
-
-          <p className="mt-8 max-w-xl text-xl leading-9 text-stone-600">
-            Buying or selling a home isn't simply another transaction.
-            It's one of life's biggest decisions.
+          <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">
+            Full-Service Representation • Reduced Listing Compensation
           </p>
 
-          <p className="mt-6 max-w-xl text-lg leading-8 text-stone-600">
-            My role isn't to pressure you into a purchase.
-            It's to guide you with honesty, clear communication,
-            and the confidence to make the right decision for your family.
+          <h1 className="mt-6 max-w-2xl text-5xl font-bold leading-[1.05] tracking-tight text-foreground md:text-6xl xl:text-7xl">
+            Protect More Of
+            <br />
+            Your Home's Equity.
+          </h1>
+
+          <p className="mt-8 max-w-2xl text-2xl leading-10 text-stone-700">
+            Full-service real estate representation with honest guidance,
+            experienced negotiation, and reduced listing compensation that
+            helps many Arizona homeowners keep more of what they've worked
+            so hard to build.
+          </p>
+
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
+            Buying or selling a home is one of life's biggest financial
+            decisions. My commitment is to provide exceptional service,
+            clear communication, and professional representation from our
+            first meeting through closing—and long after you've received
+            the keys.
           </p>
 
           <div className="mt-12 flex flex-wrap gap-5">
-            <Link href="/contact">
-              <Button size="lg" className="px-8">
-                Let's Talk
-              </Button>
-            </Link>
-
             <Link href="/buyers">
               <Button
                 size="lg"
-                variant="outline"
-                className="px-8"
+                className="bg-slate-800 px-10 hover:bg-slate-900"
               >
-                Start Your Home Search
+                I'm Buying a Home
+              </Button>
+            </Link>
+
+            <Link href="/sellers">
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-10"
+              >
+                I'm Selling My Home
               </Button>
             </Link>
           </div>
 
-          <div className="mt-16 grid max-w-xl grid-cols-3 gap-8 border-t border-stone-200 pt-10">
-            <div>
-              <h3 className="text-3xl font-bold text-stone-900">
-                100%
-              </h3>
+          <div className="mt-8">
+            <Link
+              href={IDX_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-orange-600 transition hover:text-orange-700"
+            >
+              Or search all Arizona homes →
+            </Link>
+          </div>
 
-              <p className="mt-2 text-sm leading-6 text-stone-600">
-                Personalized
-                <br />
-                Guidance
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-3xl font-bold text-stone-900">
-                Local
-              </h3>
-
-              <p className="mt-2 text-sm leading-6 text-stone-600">
-                Phoenix
-                <br />
-                Expertise
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-3xl font-bold text-stone-900">
-                One
-              </h3>
-
-              <p className="mt-2 text-sm leading-6 text-stone-600">
-                Trusted
-                <br />
-                Advisor
-              </p>
-            </div>
+          <div className="mt-14 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-border pt-8 text-sm font-medium text-muted-foreground">
+            <span>✔ Full-Service REALTOR®</span>
+            <span>•</span>
+            <span>✔ Protect Your Equity</span>
+            <span>•</span>
+            <span>✔ Phoenix Metro Specialist</span>
           </div>
         </div>
 
-        {/* Right Side */}
-        <div className="relative">
-          <div className="absolute -left-8 -top-8 hidden h-full w-full rounded-[2rem] bg-orange-100 lg:block" />
-
-          <div className="relative overflow-hidden rounded-[2rem] shadow-2xl">
+        {/* Right Image */}
+        <div className="relative flex justify-center lg:justify-end">
+          <div className="rounded-[2rem] bg-card p-1 shadow-2xl">
             <Image
-              src="/images/hero.jpg"
-              alt="Arizona home at sunset"
+              src="/images/whiteDoorWelcome.jpg"
+              alt="Welcome Home"
               width={900}
               height={1100}
               priority
-              className="h-[700px] w-full object-cover"
+              className="h-auto max-w-full rounded-[1.75rem]"
             />
           </div>
 
-          <div className="absolute -bottom-10 left-8 max-w-sm rounded-3xl border border-stone-200 bg-white/95 p-8 shadow-xl backdrop-blur">
-            <p className="text-lg font-semibold text-stone-900">
-              Real estate is personal.
+          <div className="absolute -bottom-14 left-20 max-w-sm rounded-3xl border border-border bg-card p-8 shadow-xl">
+            <p className="text-xl font-semibold text-card-foreground">
+              More than another transaction.
             </p>
 
-            <p className="mt-4 leading-7 text-stone-600">
-              Every client has a different story, different priorities,
-              and different goals. My commitment is to understand yours
-              before we ever discuss contracts or listings.
+            <p className="mt-4 leading-7 text-muted-foreground">
+              Every client has different goals. My job is to provide honest
+              advice, protect your investment, and help you make confident
+              decisions while keeping more of your hard-earned equity whenever
+              possible.
             </p>
           </div>
         </div>
