@@ -11,6 +11,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { CommunityBreadcrumb } from "@/components/seo/CommunityBreadcrumb";
 
 export const metadata: Metadata = {
   title: "Queen Creek AZ Real Estate & Homes | AZ Hearts In Homes",
@@ -44,6 +45,7 @@ const areas = [
 export default function QueenCreekPage() {
   return (
     <main className="bg-background">
+      <CommunityBreadcrumb name="Queen Creek" slug="queen-creek" />
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -left-40 top-20 h-[30rem] w-[30rem] rounded-full bg-amber-100/40 blur-3xl" />

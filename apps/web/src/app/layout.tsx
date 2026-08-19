@@ -5,8 +5,196 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
+const siteUrl = "https://azheartsinhomes.com";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "RealEstateAgent",
+      "@id": `${siteUrl}/#real-estate-agent`,
+      name: "Darek Dowsett",
+      url: siteUrl,
+      image: `${siteUrl}/images/hearthome-new.png`,
+      logo: `${siteUrl}/images/hearthome-new.png`,
+      telephone: "+1-480-773-3213",
+      email: "phxrealtordarek@gmail.com",
+      description:
+        "Full-service real estate representation for buyers and sellers throughout the Greater Phoenix area.",
+      priceRange: "$$",
+      areaServed: [
+        {
+          "@type": "City",
+          name: "Phoenix",
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "AZ",
+            addressCountry: "US",
+          },
+        },
+        {
+          "@type": "City",
+          name: "Scottsdale",
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "AZ",
+            addressCountry: "US",
+          },
+        },
+        {
+          "@type": "City",
+          name: "Glendale",
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "AZ",
+            addressCountry: "US",
+          },
+        },
+        {
+          "@type": "City",
+          name: "Peoria",
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "AZ",
+            addressCountry: "US",
+          },
+        },
+        {
+          "@type": "City",
+          name: "Surprise",
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "AZ",
+            addressCountry: "US",
+          },
+        },
+        {
+          "@type": "City",
+          name: "Sun City",
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "AZ",
+            addressCountry: "US",
+          },
+        },
+        {
+          "@type": "City",
+          name: "Sun City West",
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "AZ",
+            addressCountry: "US",
+          },
+        },
+        {
+          "@type": "City",
+          name: "Goodyear",
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "AZ",
+            addressCountry: "US",
+          },
+        },
+        {
+          "@type": "City",
+          name: "Chandler",
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "AZ",
+            addressCountry: "US",
+          },
+        },
+        {
+          "@type": "City",
+          name: "Gilbert",
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "AZ",
+            addressCountry: "US",
+          },
+        },
+        {
+          "@type": "City",
+          name: "Mesa",
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "AZ",
+            addressCountry: "US",
+          },
+        },
+        {
+          "@type": "City",
+          name: "Tempe",
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "AZ",
+            addressCountry: "US",
+          },
+        },
+        {
+          "@type": "City",
+          name: "Queen Creek",
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "AZ",
+            addressCountry: "US",
+          },
+        },
+        {
+          "@type": "City",
+          name: "Anthem",
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "AZ",
+            addressCountry: "US",
+          },
+        },
+        {
+          "@type": "City",
+          name: "Cave Creek",
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "AZ",
+            addressCountry: "US",
+          },
+        },
+      ],
+      sameAs: [
+        "https://www.instagram.com/phxrealtordarek/",
+      ],
+      memberOf: {
+        "@type": "Organization",
+        name: "HomeSmart",
+      },
+    },
+
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#darek-dowsett`,
+      name: "Darek Dowsett",
+      url: `${siteUrl}/about`,
+      jobTitle: "REALTOR®",
+      worksFor: {
+        "@id": `${siteUrl}/#real-estate-agent`,
+      },
+    },
+
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "AZ Hearts In Homes",
+      description:
+        "Real estate services for buyers and sellers throughout the Greater Phoenix area.",
+      publisher: {
+        "@id": `${siteUrl}/#real-estate-agent`,
+      },
+    },
+  ],
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://azheartsinhomes.com"),
+  metadataBase: new URL(siteUrl),
 
   title: {
     default: "AZ Hearts In Homes | Phoenix AZ Real Estate",
@@ -44,7 +232,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://azheartsinhomes.com",
+    url: siteUrl,
     siteName: "AZ Hearts In Homes",
     title: "AZ Hearts In Homes | Phoenix AZ Real Estate",
     description:
@@ -78,6 +266,13 @@ export default function RootLayout({
         {children}
 
         <Footer />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
       </body>
     </html>
   );

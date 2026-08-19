@@ -11,6 +11,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { CommunityBreadcrumb } from "@/components/seo/CommunityBreadcrumb";
 
 export const metadata: Metadata = {
   title: "Scottsdale AZ Real Estate & Homes | AZ Hearts In Homes",
@@ -44,6 +45,7 @@ const areas = [
 export default function ScottsdalePage() {
   return (
     <main className="bg-background">
+      <CommunityBreadcrumb name="Scottsdale" slug="scottsdale" />
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0">
