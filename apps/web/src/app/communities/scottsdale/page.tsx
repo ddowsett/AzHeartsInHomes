@@ -34,7 +34,7 @@ export default function ScottsdalePage() {
       <section className="relative isolate min-h-[620px] overflow-hidden">
         <div
           className="absolute inset-0 -z-20 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/Dusk1.jpg')" }}
+          style={{ backgroundImage: "url('/images/communities/AzGolfPhoto.jpg')" }}
           aria-hidden="true"
         />
         <div className="absolute inset-0 -z-10 bg-black/50" aria-hidden="true" />
@@ -44,9 +44,7 @@ export default function ScottsdalePage() {
           <div className="mx-auto max-w-4xl text-center text-white">
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-300">SCOTTSDALE, ARIZONA</p>
             <h1 className="mt-6 text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">Discover Scottsdale</h1>
-            <p className="mt-8 text-xl leading-9 text-white/90 md:text-2xl">
-              Scottsdale offers an unusually diverse combination of desert scenery, golf, dining, shopping, recreation, and neighborhoods. Finding the right part of Scottsdale is an important part of finding the right home.
-            </p>
+            <p className="mt-8 text-xl leading-9 text-white/90 md:text-2xl">Scottsdale offers an unusually diverse combination of desert scenery, golf, dining, shopping, recreation, and neighborhoods. Finding the right part of Scottsdale is an important part of finding the right home.</p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <Link href="/buyers"><Button size="lg" className="px-8">Search Scottsdale Homes</Button></Link>
               <Link href="/contact"><Button size="lg" variant="outline" className="border-white bg-white/10 px-8 text-white hover:bg-white hover:text-stone-900">Talk With Me</Button></Link>
