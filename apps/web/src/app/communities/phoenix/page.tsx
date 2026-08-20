@@ -33,7 +33,7 @@ export default function PhoenixPage() {
       <section className="relative isolate min-h-[620px] overflow-hidden">
         <div
           className="absolute inset-0 -z-20 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/Phoenix.jpg')" }}
+          style={{ backgroundImage: "url('/images/communities/PhxPan.jpg')" }}
           aria-hidden="true"
         />
         <div className="absolute inset-0 -z-10 bg-black/55" aria-hidden="true" />
@@ -41,27 +41,12 @@ export default function PhoenixPage() {
 
         <div className="relative mx-auto flex min-h-[620px] max-w-7xl items-center px-6 py-24">
           <div className="mx-auto max-w-4xl text-center text-white">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-300">
-              PHOENIX, ARIZONA
-            </p>
-            <h1 className="mt-6 text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
-              Find Your Place In Phoenix
-            </h1>
-            <p className="mt-8 text-xl leading-9 text-white/90 md:text-2xl">
-              Phoenix offers an incredible variety of neighborhoods, housing
-              options, lifestyles, and price points. The challenge isn&apos;t
-              finding a home—it&apos;s finding the right home in the right part of
-              the Valley.
-            </p>
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-300">PHOENIX, ARIZONA</p>
+            <h1 className="mt-6 text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">Find Your Place In Phoenix</h1>
+            <p className="mt-8 text-xl leading-9 text-white/90 md:text-2xl">Phoenix offers an incredible variety of neighborhoods, housing options, lifestyles, and price points. The challenge isn&apos;t finding a home—it&apos;s finding the right home in the right part of the Valley.</p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Link href="/buyers">
-                <Button size="lg" className="px-8">Search Phoenix Homes</Button>
-              </Link>
-              <Link href="/contact">
-                <Button size="lg" variant="outline" className="border-white bg-white/10 px-8 text-white hover:bg-white hover:text-stone-900">
-                  Talk With Me
-                </Button>
-              </Link>
+              <Link href="/buyers"><Button size="lg" className="px-8">Search Phoenix Homes</Button></Link>
+              <Link href="/contact"><Button size="lg" variant="outline" className="border-white bg-white/10 px-8 text-white hover:bg-white hover:text-stone-900">Talk With Me</Button></Link>
             </div>
           </div>
         </div>
@@ -72,28 +57,15 @@ export default function PhoenixPage() {
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">LIVING IN PHOENIX</p>
             <h2 className="mt-4 text-4xl font-bold md:text-5xl">Phoenix Is A City Of Very Different Neighborhoods</h2>
-            <p className="mt-8 text-lg leading-8 text-muted-foreground">
-              One of the biggest advantages of buying in Phoenix is the range
-              of choices. You can find established neighborhoods with mature
-              landscaping, newer communities, mountain and desert settings,
-              and areas closer to downtown employment, dining, arts, and
-              entertainment.
-            </p>
+            <p className="mt-8 text-lg leading-8 text-muted-foreground">One of the biggest advantages of buying in Phoenix is the range of choices. You can find established neighborhoods with mature landscaping, newer communities, mountain and desert settings, and areas closer to downtown employment, dining, arts, and entertainment.</p>
           </div>
-
           <div className="mt-14 grid gap-8 md:grid-cols-3">
             {[
               { icon: Home, title: "Housing Variety", text: "Phoenix includes established homes, newer construction, townhomes, condos, larger properties, and luxury homes." },
               { icon: Sun, title: "Arizona Lifestyle", text: "Sunshine and warm weather create opportunities for golf, hiking, outdoor recreation, sporting events, dining, and entertainment." },
               { icon: Compass, title: "Location Matters", text: "Commute, neighborhood character, recreation, shopping, and access to other Valley communities can vary significantly by location." },
             ].map((item) => (
-              <Card key={item.title} className="rounded-3xl">
-                <CardContent className="p-8 text-center">
-                  <item.icon className="mx-auto h-12 w-12 text-orange-500" />
-                  <h3 className="mt-6 text-2xl font-bold">{item.title}</h3>
-                  <p className="mt-4 leading-8 text-muted-foreground">{item.text}</p>
-                </CardContent>
-              </Card>
+              <Card key={item.title} className="rounded-3xl"><CardContent className="p-8 text-center"><item.icon className="mx-auto h-12 w-12 text-orange-500" /><h3 className="mt-6 text-2xl font-bold">{item.title}</h3><p className="mt-4 leading-8 text-muted-foreground">{item.text}</p></CardContent></Card>
             ))}
           </div>
         </div>
@@ -107,14 +79,7 @@ export default function PhoenixPage() {
         </div>
         <div className="mt-16 grid gap-8 md:grid-cols-2">
           {areas.map((area) => (
-            <Card key={area.title} className="rounded-3xl">
-              <CardContent className="p-8">
-                <div className="flex items-start gap-5">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-orange-50"><MapPin className="h-6 w-6 text-orange-500" /></div>
-                  <div><h3 className="text-2xl font-bold">{area.title}</h3><p className="mt-4 leading-8 text-muted-foreground">{area.text}</p></div>
-                </div>
-              </CardContent>
-            </Card>
+            <Card key={area.title} className="rounded-3xl"><CardContent className="p-8"><div className="flex items-start gap-5"><div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-orange-50"><MapPin className="h-6 w-6 text-orange-500" /></div><div><h3 className="text-2xl font-bold">{area.title}</h3><p className="mt-4 leading-8 text-muted-foreground">{area.text}</p></div></div></CardContent></Card>
           ))}
         </div>
       </section>
@@ -128,9 +93,7 @@ export default function PhoenixPage() {
               <p className="mt-7 text-lg leading-8 text-muted-foreground">When you&apos;re buying a home, the property itself is only part of the decision. I can help you compare neighborhoods and evaluate how each property fits your priorities and long-term plans.</p>
             </div>
             <div className="space-y-5">
-              {["Location and commute", "Neighborhood character", "Home style, condition, and lot", "Nearby shopping and dining", "Recreation and outdoor access", "Long-term resale considerations"].map((item) => (
-                <div key={item} className="flex items-center gap-4"><CheckCircle2 className="h-6 w-6 shrink-0 text-orange-500" /><span className="text-lg">{item}</span></div>
-              ))}
+              {["Location and commute", "Neighborhood character", "Home style, condition, and lot", "Nearby shopping and dining", "Recreation and outdoor access", "Long-term resale considerations"].map((item) => <div key={item} className="flex items-center gap-4"><CheckCircle2 className="h-6 w-6 shrink-0 text-orange-500" /><span className="text-lg">{item}</span></div>)}
             </div>
           </div>
         </div>
@@ -151,9 +114,7 @@ export default function PhoenixPage() {
           <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">EXPLORE THE VALLEY</p>
           <h2 className="mt-4 text-4xl font-bold">Considering More Than Phoenix?</h2>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">Phoenix is only one part of the Greater Phoenix area. Scottsdale, Glendale, Peoria, Surprise, and other communities may offer a better fit depending on what you&apos;re looking for.</p>
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            {[["/communities/scottsdale", "Scottsdale"], ["/communities/glendale", "Glendale"], ["/communities/peoria", "Peoria"], ["/communities/surprise", "Surprise"]].map(([href, label]) => <Link key={href} href={href}><Button variant="outline">{label}</Button></Link>)}
-          </div>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">{[["/communities/scottsdale", "Scottsdale"], ["/communities/glendale", "Glendale"], ["/communities/peoria", "Peoria"], ["/communities/surprise", "Surprise"]].map(([href, label]) => <Link key={href} href={href}><Button variant="outline">{label}</Button></Link>)}</div>
         </div>
       </section>
 
@@ -161,10 +122,7 @@ export default function PhoenixPage() {
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="text-5xl font-bold">Ready To Explore Phoenix?</h2>
           <p className="mt-8 text-xl leading-9 text-stone-300">Search available homes or contact me and let&apos;s talk about what you&apos;re looking for.</p>
-          <div className="mt-12 flex flex-wrap justify-center gap-4">
-            <Link href="/buyers"><Button size="lg" className="px-8">Search Phoenix Homes</Button></Link>
-            <Link href="/contact"><Button size="lg" variant="outline" className="border-white bg-transparent px-8 text-white hover:bg-white hover:text-stone-900">Contact Me</Button></Link>
-          </div>
+          <div className="mt-12 flex flex-wrap justify-center gap-4"><Link href="/buyers"><Button size="lg" className="px-8">Search Phoenix Homes</Button></Link><Link href="/contact"><Button size="lg" variant="outline" className="border-white bg-transparent px-8 text-white hover:bg-white hover:text-stone-900">Contact Me</Button></Link></div>
         </div>
       </section>
     </main>
