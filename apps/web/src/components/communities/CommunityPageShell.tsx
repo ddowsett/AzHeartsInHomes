@@ -13,7 +13,7 @@ const heroImages: Record<string, string> = {
   "/communities/peoria": "/images/communities/PeoriaPic.jpg",
   "/communities/queen-creek": "/images/communities/MountainHomes.jpg",
   "/communities/sun-city": "/images/communities/RetirementCommunity.jpg",
-  "/communities/sun-city-west": "/images/communities/RetirementCommunity.jpg",
+  "/communities/sun-city-west": "/images/communities/golf1.jpg",
   "/communities/surprise": "/images/communities/SurprisePic.jpg",
   "/communities/tempe": "/images/communities/TempeAsu.jpg",
 };
