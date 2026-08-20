@@ -39,6 +39,8 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -62,13 +64,13 @@
   --popover-foreground: var(--foreground);
 
   /* Brand Colors */
-  --primary: oklch(0.38 0.04 250);           /* Slate Blue */
+  --primary: oklch(0.38 0.04 250);
   --primary-foreground: oklch(0.99 0 0);
 
-  --secondary: oklch(0.95 0.015 85);         /* Warm Sand */
+  --secondary: oklch(0.95 0.015 85);
   --secondary-foreground: var(--foreground);
 
-  --accent: oklch(0.76 0.11 70);             /* Desert Gold */
+  --accent: oklch(0.76 0.11 70);
   --accent-foreground: oklch(0.18 0.01 250);
 
   /* Supporting */
@@ -145,4 +147,23 @@
   html {
     @apply font-sans;
   }
+}
+
+/* Community pages use local Arizona photography in their hero area. */
+.community-page-shell > div > main > section:first-of-type {
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  color: white;
+  background: transparent !important;
+}
+
+.community-page-shell > div > main > section:first-of-type .text-muted-foreground {
+  color: rgb(255 255 255 / 0.9) !important;
+}
+
+.community-page-shell > div > main > section:first-of-type [data-slot="button"][data-variant="outline"] {
+  border-color: white !important;
+  background: rgb(255 255 255 / 0.1) !important;
+  color: white !important;
 }
