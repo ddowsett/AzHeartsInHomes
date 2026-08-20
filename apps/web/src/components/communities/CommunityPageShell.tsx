@@ -23,7 +23,7 @@ export function CommunityPageShell({ children }: { children: React.ReactNode }) 
   const heroImage = heroImages[pathname];
 
   return (
-    <div className="relative isolate [&>main]:bg-transparent">
+    <div className="community-page-shell relative isolate [&>main]:bg-transparent">
       {heroImage && (
         <div
           className="pointer-events-none absolute left-0 right-0 top-0 z-0 h-[620px] bg-cover bg-center"
