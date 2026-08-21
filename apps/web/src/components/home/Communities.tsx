@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 const communities = [
   {
     title: "East Valley",
-    image: "/images/communities/Phoenix.jpg",
+    image: "/images/communities/DesertHomes.jpg",
     cities: "Scottsdale • Tempe • Mesa • Chandler • Gilbert • Queen Creek",
     description:
       "From vibrant downtown Tempe to the family-friendly communities of Chandler and Gilbert, the East Valley offers outstanding schools, thriving business centers, and diverse neighborhoods for every lifestyle.",
