@@ -12,7 +12,7 @@ applications:
           commands:
             - pnpm --filter web exec next build --webpack
             - rm -rf /tmp/web-deploy apps/web/node_modules
-            - pnpm --filter web deploy --prod /tmp/web-deploy
+            - pnpm --filter web deploy --prod --legacy /tmp/web-deploy
             - mkdir -p apps/web/node_modules
             - cp -a /tmp/web-deploy/node_modules/. apps/web/node_modules/
       artifacts:
