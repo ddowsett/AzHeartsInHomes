@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   CheckCircle2,
@@ -46,15 +47,22 @@ export default function TempePage() {
   return (
     <main className="bg-background">
       <CommunityBreadcrumb name="Tempe" slug="tempe" />
-      <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-40 top-20 h-[30rem] w-[30rem] rounded-full bg-amber-100/40 blur-3xl" />
-          <div className="absolute bottom-0 right-0 h-[30rem] w-[30rem] rounded-full bg-orange-100/30 blur-3xl" />
+      <section className="relative isolate min-h-[620px] overflow-hidden">
+        <div className="absolute inset-0 -z-20">
+          <Image
+            src="/images/communities/TempeAsu.jpg"
+            alt="Arizona State University in Tempe Arizona"
+            fill
+            priority
+            className="object-cover object-center"
+          />
         </div>
+        <div className="absolute inset-0 -z-10 bg-black/50" aria-hidden="true" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/30 via-black/45 to-black/65" aria-hidden="true" />
 
-        <div className="relative mx-auto max-w-7xl px-6 py-24">
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">
+        <div className="relative mx-auto flex min-h-[620px] max-w-7xl items-center px-6 py-24">
+          <div className="mx-auto max-w-4xl text-center text-white">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-300">
               TEMPE, ARIZONA
             </p>
 
@@ -62,7 +70,7 @@ export default function TempePage() {
               Discover Tempe
             </h1>
 
-            <p className="mt-8 text-xl leading-9 text-muted-foreground">
+            <p className="mt-8 text-xl leading-9 text-white/90 md:text-2xl">
               Tempe offers a unique combination of urban energy, established
               neighborhoods, outdoor recreation, dining, entertainment, and
               convenient access to communities throughout the Valley.
@@ -76,7 +84,11 @@ export default function TempePage() {
               </Link>
 
               <Link href="/contact">
-                <Button size="lg" variant="outline" className="px-8">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white bg-white/10 px-8 text-white hover:bg-white hover:text-stone-900"
+                >
                   Talk With Me
                 </Button>
               </Link>
@@ -133,7 +145,7 @@ export default function TempePage() {
           </p>
 
           <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-            Find The Right Part Of Tempe.
+            Find The Right Part Of Tempe
           </h2>
 
           <p className="mt-8 text-lg leading-8 text-muted-foreground">
@@ -174,7 +186,7 @@ export default function TempePage() {
               </p>
 
               <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-                Location Can Change Everything.
+                Location Can Change Everything
               </h2>
 
               <p className="mt-7 text-lg leading-8 text-muted-foreground">
