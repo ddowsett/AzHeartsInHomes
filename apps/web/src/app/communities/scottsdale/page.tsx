@@ -34,7 +34,7 @@ export default function ScottsdalePage() {
       <section className="relative isolate min-h-[620px] overflow-hidden">
         <div
           className="absolute inset-0 -z-20 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/communities/AzGolfPhoto.jpg')" }}
+          style={{ backgroundImage: "url('/images/communities/Luxrury.jpg')" }}
           aria-hidden="true"
         />
         <div className="absolute inset-0 -z-10 bg-black/50" aria-hidden="true" />
