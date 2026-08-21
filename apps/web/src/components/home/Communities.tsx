@@ -9,7 +9,7 @@ const communities = [
   {
     title: "East Valley",
     image: "/images/scottsdale.jpg",
-    cities: "Tempe • Mesa • Chandler • Gilbert • Queen Creek",
+    cities: "Scottsdale • Tempe • Mesa • Chandler • Gilbert • Queen Creek",
     description:
       "From vibrant downtown Tempe to the family-friendly communities of Chandler and Gilbert, the East Valley offers outstanding schools, thriving business centers, and diverse neighborhoods for every lifestyle.",
   },
