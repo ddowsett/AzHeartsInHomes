@@ -25,7 +25,7 @@ export default function TempePage() {
       <CommunityBreadcrumb name="Tempe" slug="tempe" />
       <section className="relative isolate min-h-[620px] overflow-hidden">
         <div className="absolute inset-0 -z-20">
-          <Image src="/images/communities/TempeAsu.jpg" alt="Arizona State University sign in Tempe Arizona" fill priority className="object-cover object-bottom" />
+          <Image src="/images/communities/TempeAsu.jpg" alt="Arizona State University sign in Tempe Arizona" fill priority className="object-cover object-[center_78%]" />
         </div>
         <div className="absolute inset-0 -z-10 bg-black/50" aria-hidden="true" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/30 via-black/45 to-black/65" aria-hidden="true" />
