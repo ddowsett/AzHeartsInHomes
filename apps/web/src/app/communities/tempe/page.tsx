@@ -51,10 +51,10 @@ export default function TempePage() {
         <div className="absolute inset-0 -z-20">
           <Image
             src="/images/communities/TempeAsu.jpg"
-            alt="Arizona State University in Tempe Arizona"
+            alt="Arizona State University sign in Tempe Arizona"
             fill
             priority
-            className="object-cover object-center"
+            className="object-cover object-bottom"
           />
         </div>
         <div className="absolute inset-0 -z-10 bg-black/50" aria-hidden="true" />
