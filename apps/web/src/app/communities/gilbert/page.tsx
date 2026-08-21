@@ -133,7 +133,7 @@ export default function GilbertPage() {
           </p>
 
           <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-            Find The Right Gilbert Neighborhood.
+            Find The Right Gilbert Neighborhood
           </h2>
 
           <p className="mt-8 text-lg leading-8 text-muted-foreground">
@@ -175,7 +175,7 @@ export default function GilbertPage() {
               </p>
 
               <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-                The Neighborhood Matters.
+                The Neighborhood Matters
               </h2>
 
               <p className="mt-7 text-lg leading-8 text-muted-foreground">
