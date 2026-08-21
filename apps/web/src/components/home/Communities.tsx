@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 const communities = [
   {
     title: "East Valley",
-    image: "/images/scottsdale.jpg",
+    image: "/images/communities/Phoenix.jpg",
     cities: "Scottsdale • Tempe • Mesa • Chandler • Gilbert • Queen Creek",
     description:
       "From vibrant downtown Tempe to the family-friendly communities of Chandler and Gilbert, the East Valley offers outstanding schools, thriving business centers, and diverse neighborhoods for every lifestyle.",
@@ -22,7 +22,7 @@ const communities = [
   },
   {
     title: "West Valley",
-    image: "/images/AzGolfPhoto.jpg",
+    image: "/images/communities/MountainHomes.jpg",
     cities: "Peoria • Glendale • Surprise • Sun City West • Goodyear",
     description:
       "Home to beautiful golf communities, active-adult living, and some of the Valley's fastest-growing neighborhoods, the West Valley has something for everyone.",
