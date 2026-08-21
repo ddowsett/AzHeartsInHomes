@@ -17,7 +17,7 @@ export function Hero() {
         <div className="absolute bottom-0 right-0 h-[32rem] w-[32rem] rounded-full bg-orange-100/30 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl gap-20 px-6 pt-16 pb-24 lg:grid-cols-2 lg:items-start">
+      <div className="relative mx-auto grid max-w-7xl gap-20 px-6 pt-16 pb-24 lg:grid-cols-2 lg:items-center">
         {/* Left Content */}
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">
@@ -27,21 +27,21 @@ export function Hero() {
           <h1 className="mt-6 max-w-2xl text-5xl font-bold leading-[1.05] tracking-tight text-foreground md:text-6xl xl:text-7xl">
             Protect More Of
             <br />
-            Your Home's Equity
+            Your Home&apos;s Equity
           </h1>
 
           <p className="mt-8 max-w-2xl text-2xl leading-10 text-stone-700">
             Full-service real estate representation with honest guidance,
             experienced negotiation, and reduced listing compensation that
-            helps many Arizona homeowners keep more of what they've worked
+            helps many Arizona homeowners keep more of what they&apos;ve worked
             so hard to build.
           </p>
 
           <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
-            Buying or selling a home is one of life's biggest financial
+            Buying or selling a home is one of life&apos;s biggest financial
             decisions. My commitment is to provide exceptional service,
             clear communication, and professional representation from our
-            first meeting through closing—and long after you've received
+            first meeting through closing—and long after you&apos;ve received
             the keys.
           </p>
 
@@ -51,13 +51,17 @@ export function Hero() {
                 size="lg"
                 className="bg-slate-800 px-10 hover:bg-slate-900"
               >
-                I'm Buying a Home
+                I&apos;m Buying a Home
               </Button>
             </Link>
 
             <Link href="/sellers">
-              <Button size="lg" variant="outline" className="px-10">
-                I'm Selling My Home
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-10"
+              >
+                I&apos;m Selling My Home
               </Button>
             </Link>
           </div>
@@ -83,19 +87,20 @@ export function Hero() {
         </div>
 
         {/* Right Image */}
-        <div className="relative flex flex-col items-center lg:items-end">
-          <div className="rounded-[2rem] bg-card p-1 shadow-2xl">
+        <div className="flex flex-col items-center lg:items-end">
+          <div className="w-full max-w-[580px] rounded-[2rem] bg-card p-1 shadow-2xl">
             <Image
               src="/images/whiteDoorWelcome.jpg"
               alt="Welcome Home"
               width={900}
               height={1100}
               priority
-              className="h-auto max-w-full rounded-[1.75rem]"
+              className="h-auto w-full rounded-[1.75rem]"
             />
           </div>
 
-          <div className="relative z-10 mt-6 w-full max-w-sm rounded-3xl border border-border bg-card p-8 shadow-xl lg:mr-12">
+          {/* Supporting Message */}
+          <div className="mt-6 w-full max-w-[580px] rounded-3xl border border-border bg-card p-8 shadow-xl">
             <p className="text-xl font-semibold text-card-foreground">
               More than another transaction
             </p>

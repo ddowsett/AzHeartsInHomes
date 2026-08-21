@@ -210,6 +210,7 @@ export const metadata: Metadata = {
 
   keywords: [
     "Phoenix AZ Realtor",
+    "Phoenix Realtor",
     "Phoenix real estate",
     "Phoenix homes for sale",
     "Arizona Realtor",
