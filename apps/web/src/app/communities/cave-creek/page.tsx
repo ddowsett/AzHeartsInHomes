@@ -133,7 +133,7 @@ export default function CaveCreekPage() {
           </p>
 
           <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-            A Different Kind Of Arizona Lifestyle.
+            A Different Kind Of Arizona Lifestyle
           </h2>
 
           <p className="mt-8 text-lg leading-8 text-muted-foreground">
@@ -175,7 +175,7 @@ export default function CaveCreekPage() {
               </p>
 
               <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-                Find A Home That Fits The Landscape.
+                Find A Home That Fits The Landscape
               </h2>
 
               <p className="mt-7 text-lg leading-8 text-muted-foreground">
