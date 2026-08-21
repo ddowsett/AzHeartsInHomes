@@ -11,6 +11,10 @@ applications:
         build:
           commands:
             - pnpm --filter web exec next build --webpack
+            - rm -rf /tmp/web-deploy apps/web/node_modules
+            - pnpm --filter web deploy --prod /tmp/web-deploy
+            - mkdir -p apps/web/node_modules
+            - cp -a /tmp/web-deploy/node_modules/. apps/web/node_modules/
       artifacts:
         baseDirectory: apps/web/.next
         files:
@@ -18,5 +22,6 @@ applications:
       cache:
         paths:
           - node_modules/**/*
+          - apps/web/node_modules/**/*
           - .pnpm-store/**/*
           - apps/web/.next/cache/**/*
