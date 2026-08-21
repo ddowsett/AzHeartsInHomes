@@ -34,7 +34,7 @@ export default function AboutPage() {
             <h1 className="mt-6 text-5xl font-bold leading-tight text-foreground md:text-6xl">
               More Than A
               <br />
-              Real Estate Transaction.
+              Real Estate Transaction
             </h1>
 
             <p className="mt-8 text-xl leading-9 text-muted-foreground">
@@ -58,11 +58,7 @@ export default function AboutPage() {
               </Link>
 
               <Link href="/sellers">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="px-8"
-                >
+                <Button size="lg" variant="outline" className="px-8">
                   I&apos;m Selling My Home
                 </Button>
               </Link>
@@ -85,21 +81,18 @@ export default function AboutPage() {
             <div className="absolute -bottom-8 -left-4 rounded-3xl border border-border bg-card p-6 shadow-xl md:left-4">
               <div className="flex items-center gap-3">
                 <Image
-                    src="/images/hearthome-new.png"
-                    alt=""
-                    width={42}
-                    height={42}
-                    className="h-10 w-10 object-contain"
+                  src="/images/hearthome-new.png"
+                  alt=""
+                  width={42}
+                  height={42}
+                  className="h-10 w-10 object-contain"
                 />
 
                 <div>
-                    <p className="font-semibold">
-                    Real Estate With Heart
-                    </p>
-
-                    <p className="text-sm text-muted-foreground">
+                  <p className="font-semibold">Real Estate With Heart</p>
+                  <p className="text-sm text-muted-foreground">
                     Personal service. Genuine care.
-                    </p>
+                  </p>
                 </div>
               </div>
             </div>
@@ -115,7 +108,7 @@ export default function AboutPage() {
           </p>
 
           <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-            More Than A Transaction.
+            More Than A Transaction
           </h2>
 
           <p className="mt-8 text-lg leading-8 text-muted-foreground">
@@ -149,7 +142,7 @@ export default function AboutPage() {
             <h2 className="mt-4 text-4xl font-bold md:text-5xl">
               Experience That
               <br />
-              Goes Beyond Real Estate.
+              Goes Beyond Real Estate
             </h2>
 
             <p className="mt-8 text-lg leading-8 text-muted-foreground">
@@ -196,11 +189,7 @@ export default function AboutPage() {
               <Card key={item.title} className="rounded-3xl">
                 <CardContent className="p-7">
                   <item.icon className="h-10 w-10 text-orange-500" />
-
-                  <h3 className="mt-5 text-xl font-bold">
-                    {item.title}
-                  </h3>
-
+                  <h3 className="mt-5 text-xl font-bold">{item.title}</h3>
                   <p className="mt-3 leading-7 text-muted-foreground">
                     {item.text}
                   </p>
@@ -225,8 +214,7 @@ export default function AboutPage() {
           </h2>
 
           <p className="mt-8 text-lg leading-8 text-stone-300">
-            In 2013, I received the gift of life in the form of a 
-            heart transplant. That experience changed
+            In 2013, I received the gift of life in the form of a heart transplant. That experience changed
             the way I look at life, relationships, and the importance of
             making the most of every opportunity.
           </p>
@@ -253,85 +241,69 @@ export default function AboutPage() {
       </section>
 
       {/* How I Work */}
-        <section className="bg-stone-50 py-24">
+      <section className="bg-stone-50 py-24">
         <div className="mx-auto max-w-6xl px-6">
-            <div className="mx-auto max-w-3xl text-center">
+          <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">
-                HOW I WORK
+              HOW I WORK
             </p>
 
             <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-                You Should Know Who
-                <br />
-                You&apos;re Working With.
+              You Should Know Who
+              <br />
+              You&apos;re Working With
             </h2>
 
             <p className="mt-8 text-lg leading-8 text-muted-foreground">
-                I believe great representation comes down to three simple
-                commitments: being personally involved, giving you straightforward
-                advice, and remaining available long after the transaction is over.
+              I believe great representation comes down to three simple
+              commitments: being personally involved, giving you straightforward
+              advice, and remaining available long after the transaction is over.
             </p>
-            </div>
+          </div>
 
-            <div className="mt-16 grid gap-8 md:grid-cols-3">
-            {/* Personally Involved */}
+          <div className="mt-16 grid gap-8 md:grid-cols-3">
             <div className="rounded-[2rem] border border-border bg-background p-8 shadow-sm">
-           
-                <h3 className="mt-6 text-2xl font-bold">
-                Personally Involved
-                </h3>
-
-                <p className="mt-5 text-lg leading-8 text-muted-foreground">
+              <h3 className="mt-6 text-2xl font-bold">Personally Involved</h3>
+              <p className="mt-5 text-lg leading-8 text-muted-foreground">
                 You work directly with me from our first conversation through
                 closing. I personally manage the transaction and stay involved in
                 the details that matter.
-                </p>
+              </p>
             </div>
 
-            {/* Straightforward Advice */}
             <div className="rounded-[2rem] border border-border bg-background p-8 shadow-sm">
-             
-                <h3 className="mt-6 text-2xl font-bold">
-                Straightforward Advice
-                </h3>
-
-                <p className="mt-5 text-lg leading-8 text-muted-foreground">
+              <h3 className="mt-6 text-2xl font-bold">Straightforward Advice</h3>
+              <p className="mt-5 text-lg leading-8 text-muted-foreground">
                 Real estate decisions involve significant money. My job isn&apos;t
                 simply to tell you what you want to hear—it&apos;s to give you honest
                 information so you can make confident decisions.
-                </p>
+              </p>
             </div>
 
-            {/* Beyond Closing */}
             <div className="rounded-[2rem] border border-border bg-background p-8 shadow-sm">
-               
-                <h3 className="mt-6 text-2xl font-bold">
-                Available Beyond Closing
-                </h3>
-
-                <p className="mt-5 text-lg leading-8 text-muted-foreground">
+              <h3 className="mt-6 text-2xl font-bold">Available Beyond Closing</h3>
+              <p className="mt-5 text-lg leading-8 text-muted-foreground">
                 The relationship doesn&apos;t end at the closing table. I remain
                 available when you need real estate advice, resources, or help with
                 your next move.
-                </p>
+              </p>
             </div>
-            </div>
+          </div>
 
-            {/* Closing Statement */}
-            <div className="mx-auto mt-16 max-w-3xl text-center">
+          <div className="mx-auto mt-16 max-w-3xl text-center">
             <div className="h-px w-full bg-border" />
 
             <p className="mt-10 text-2xl font-semibold leading-9 text-foreground md:text-3xl">
-                You deserve to know that someone is personally looking out for your
-                interests every step of the way.
+              You deserve to know that someone is personally looking out for your
+              interests every step of the way
             </p>
 
             <p className="mt-4 text-lg italic text-muted-foreground">
-                That commitment is at the heart of how I work with every client.
+              That commitment is at the heart of how I work with every client.
             </p>
-            </div>
+          </div>
         </div>
-        </section>
+      </section>
 
       {/* Real Estate With Heart */}
       <section className="bg-orange-50 py-24">
@@ -342,10 +314,10 @@ export default function AboutPage() {
             width={64}
             height={64}
             className="mx-auto h-16 w-16 object-contain"
-            />
+          />
 
           <h2 className="mt-6 text-4xl font-bold md:text-5xl">
-            Real Estate With Heart.
+            Real Estate With Heart
           </h2>
 
           <p className="mt-8 text-xl leading-9 text-muted-foreground">
