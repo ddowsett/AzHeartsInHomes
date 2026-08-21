@@ -10,6 +10,8 @@ applications:
             - pnpm install --frozen-lockfile
         build:
           commands:
+            - rm -f apps/web/.env.production
+            - env | grep -e '^RESEND_API_KEY=' -e '^RESEND_TO_EMAIL=' >> apps/web/.env.production
             - pnpm --filter web exec next build --webpack
             - rm -rf /tmp/web-deploy apps/web/node_modules
             - pnpm --filter web deploy --prod --legacy /tmp/web-deploy
