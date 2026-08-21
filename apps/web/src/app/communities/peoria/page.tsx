@@ -180,7 +180,7 @@ export default function PeoriaPage() {
               </p>
 
               <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-                Find The Part Of Peoria That Fits Your Lifestyle.
+                Find The Part Of Peoria That Fits Your Lifestyle
               </h2>
 
               <p className="mt-7 text-lg leading-8 text-muted-foreground">
