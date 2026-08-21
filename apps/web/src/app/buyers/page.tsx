@@ -141,7 +141,7 @@ export default function BuyersPage() {
         <div className="grid gap-16 lg:grid-cols-2">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">WHY WORK WITH ME</p>
-            <h2 className="mt-4 text-5xl font-bold">More Than A<br />Home Search.</h2>
+            <h2 className="mt-4 text-5xl font-bold">More Than A<br />Home Search</h2>
             <p className="mt-8 text-lg leading-8 text-muted-foreground">My job doesn't end when you find a house. I'll help you understand the transaction, negotiate on your behalf, manage the details, and stay involved until you have the keys in your hand—and beyond.</p>
           </div>
           <div className="space-y-6">
