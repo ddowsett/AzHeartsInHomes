@@ -133,7 +133,7 @@ export default function QueenCreekPage() {
           </p>
 
           <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-            Find The Community That Fits.
+            Find The Community That Fits
           </h2>
 
           <p className="mt-8 text-lg leading-8 text-muted-foreground">
@@ -174,7 +174,7 @@ export default function QueenCreekPage() {
               </p>
 
               <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-                New Construction Isn't The Only Choice.
+                New Construction Isn't The Only Choice
               </h2>
 
               <p className="mt-7 text-lg leading-8 text-muted-foreground">
