@@ -56,7 +56,7 @@ export default function PhoenixPage() {
         <div className="mx-auto max-w-6xl px-6">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">LIVING IN PHOENIX</p>
-            <h2 className="mt-4 text-4xl font-bold md:text-5xl">Phoenix Is A City Of Very Different Neighborhoods</h2>
+            <h2 className="mt-4 text-4xl font-bold md:text-5xl">Discover the Distinct Neighborhoods That Make Phoenix Unique</h2>
             <p className="mt-8 text-lg leading-8 text-muted-foreground">One of the biggest advantages of buying in Phoenix is the range of choices. You can find established neighborhoods with mature landscaping, newer communities, mountain and desert settings, and areas closer to downtown employment, dining, arts, and entertainment.</p>
           </div>
           <div className="mt-14 grid gap-8 md:grid-cols-3">
@@ -74,7 +74,7 @@ export default function PhoenixPage() {
       <section className="mx-auto max-w-7xl px-6 py-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">EXPLORE PHOENIX</p>
-          <h2 className="mt-4 text-4xl font-bold md:text-5xl">Different Areas. Different Lifestyles.</h2>
+          <h2 className="mt-4 text-4xl font-bold md:text-5xl">Different Areas. Different Lifestyles</h2>
           <p className="mt-8 text-lg leading-8 text-muted-foreground">Phoenix is large enough that two homes in the same city can offer completely different daily experiences. Understanding the area is an important part of choosing the right property.</p>
         </div>
         <div className="mt-16 grid gap-8 md:grid-cols-2">
@@ -89,7 +89,7 @@ export default function PhoenixPage() {
           <div className="grid gap-14 lg:grid-cols-2 lg:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">BUYING IN PHOENIX</p>
-              <h2 className="mt-4 text-4xl font-bold md:text-5xl">Start With The Location, Then Find The House.</h2>
+              <h2 className="mt-4 text-4xl font-bold md:text-5xl">Start With The Location, Then Find The House</h2>
               <p className="mt-7 text-lg leading-8 text-muted-foreground">When you&apos;re buying a home, the property itself is only part of the decision. I can help you compare neighborhoods and evaluate how each property fits your priorities and long-term plans.</p>
             </div>
             <div className="space-y-5">
@@ -102,7 +102,7 @@ export default function PhoenixPage() {
       <section className="mx-auto max-w-7xl px-6 py-24">
         <div className="mx-auto max-w-4xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">RELOCATING TO PHOENIX</p>
-          <h2 className="mt-4 text-4xl font-bold md:text-5xl">You Don&apos;t Have To Know Phoenix Before You Move Here.</h2>
+          <h2 className="mt-4 text-4xl font-bold md:text-5xl">You Don&apos;t Have To Know Phoenix Before You Move Here</h2>
           <p className="mt-8 text-lg leading-8 text-muted-foreground">If you&apos;re relocating to Phoenix or moving from another part of the Valley, I&apos;ll help you understand the communities and neighborhoods that make sense for your lifestyle, commute, budget, and plans.</p>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">We&apos;ll start with what matters to you and narrow the search from there, rather than trying to make every Phoenix neighborhood fit the same buyer.</p>
           <Link href="/contact" className="mt-10 inline-block"><Button size="lg" className="px-8">Let&apos;s Talk About Your Search</Button></Link>
