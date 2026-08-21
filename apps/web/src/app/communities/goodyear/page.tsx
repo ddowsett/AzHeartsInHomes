@@ -51,8 +51,8 @@ export default function GoodyearPage() {
       <section className="relative isolate min-h-[620px] overflow-hidden">
         <div className="absolute inset-0 -z-20">
           <Image
-            src="/images/communities/AzGolfPhoto.jpg"
-            alt="Arizona golf and desert landscape near Goodyear"
+            src="/images/communities/MountainHomes.jpg"
+            alt="Arizona desert and mountain homes near Goodyear"
             fill
             priority
             className="object-cover object-center"
