@@ -179,7 +179,7 @@ export default function SurprisePage() {
               </p>
 
               <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-                Find The Neighborhood That Fits.
+                Find The Neighborhood That Fits
               </h2>
 
               <p className="mt-7 text-lg leading-8 text-muted-foreground">
