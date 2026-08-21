@@ -1,0 +1,22 @@
+version: 1
+applications:
+  - appRoot: apps/web
+    frontend:
+      buildPath: /
+      phases:
+        preBuild:
+          commands:
+            - npm install -g pnpm@11.18.0
+            - pnpm install --frozen-lockfile
+        build:
+          commands:
+            - pnpm --filter web exec next build --webpack
+      artifacts:
+        baseDirectory: apps/web/.next
+        files:
+          - "**/*"
+      cache:
+        paths:
+          - node_modules/**/*
+          - .pnpm-store/**/*
+          - apps/web/.next/cache/**/*
