@@ -15,7 +15,7 @@ const communities = [
   },
   {
     title: "Phoenix",
-    image: "/images/phoenix.jpg",
+    image: "/images/communities/Phoenix.jpg",
     cities: "North Phoenix • Arcadia • Biltmore • Ahwatukee • Downtown",
     description:
       "Whether you're looking for historic charm, luxury living, or an urban lifestyle, Phoenix offers exceptional opportunities throughout Arizona's largest city.",
