@@ -46,23 +46,26 @@ export default function CaveCreekPage() {
   return (
     <main className="bg-background">
       <CommunityBreadcrumb name="Cave Creek" slug="cave-creek" />
-      <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-40 top-20 h-[30rem] w-[30rem] rounded-full bg-amber-100/40 blur-3xl" />
-          <div className="absolute bottom-0 right-0 h-[30rem] w-[30rem] rounded-full bg-orange-100/30 blur-3xl" />
-        </div>
+      <section className="relative isolate min-h-[620px] overflow-hidden">
+        <div
+          className="absolute inset-0 -z-20 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/communities/AzHomePic.jpg')" }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 -z-10 bg-black/40" aria-hidden="true" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/20 via-black/35 to-black/60" aria-hidden="true" />
 
-        <div className="relative mx-auto max-w-7xl px-6 py-24">
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">
+        <div className="relative mx-auto flex min-h-[620px] max-w-7xl items-center px-6 py-24">
+          <div className="mx-auto max-w-4xl text-center text-white">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-300">
               CAVE CREEK, ARIZONA
             </p>
 
-            <h1 className="mt-6 text-5xl font-bold leading-tight md:text-6xl">
+            <h1 className="mt-6 text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
               Discover Cave Creek
             </h1>
 
-            <p className="mt-8 text-xl leading-9 text-muted-foreground">
+            <p className="mt-8 text-xl leading-9 text-white/90 md:text-2xl">
               Cave Creek offers a distinctly Arizona lifestyle with Sonoran
               Desert scenery, mountain views, outdoor recreation, western
               character, restaurants, and unique homes.
@@ -76,7 +79,7 @@ export default function CaveCreekPage() {
               </Link>
 
               <Link href="/contact">
-                <Button size="lg" variant="outline" className="px-8">
+                <Button size="lg" variant="outline" className="border-white bg-white/10 px-8 text-white hover:bg-white hover:text-stone-900">
                   Talk With Me
                 </Button>
               </Link>
