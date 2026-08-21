@@ -137,7 +137,7 @@ export default function SunCityWestPage() {
           </p>
 
           <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-            A Community Built Around Lifestyle.
+            A Community Built Around Lifestyle
           </h2>
 
           <p className="mt-8 text-lg leading-8 text-muted-foreground">
@@ -180,7 +180,7 @@ export default function SunCityWestPage() {
               </p>
 
               <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-                Find The Home That Fits Your Lifestyle.
+                Find The Home That Fits Your Lifestyle
               </h2>
 
               <p className="mt-7 text-lg leading-8 text-muted-foreground">
