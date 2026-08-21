@@ -133,7 +133,7 @@ export default function AnthemPage() {
           </p>
 
           <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-            Find The Right Part Of Anthem.
+            Find The Right Part Of Anthem
           </h2>
 
           <p className="mt-8 text-lg leading-8 text-muted-foreground">
@@ -175,7 +175,7 @@ export default function AnthemPage() {
               </p>
 
               <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-                Community Is Part Of The Home.
+                Community Is Part Of The Home
               </h2>
 
               <p className="mt-7 text-lg leading-8 text-muted-foreground">
