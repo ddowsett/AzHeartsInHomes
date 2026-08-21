@@ -136,7 +136,7 @@ export default function GoodyearPage() {
           </p>
 
           <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-            Find The Community That Fits.
+            Find The Community That Fits
           </h2>
 
           <p className="mt-8 text-lg leading-8 text-muted-foreground">
@@ -179,7 +179,7 @@ export default function GoodyearPage() {
               </p>
 
               <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-                Compare More Than Just The House.
+                Compare More Than Just The House
               </h2>
 
               <p className="mt-7 text-lg leading-8 text-muted-foreground">
