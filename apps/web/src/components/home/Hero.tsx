@@ -17,7 +17,7 @@ export function Hero() {
         <div className="absolute bottom-0 right-0 h-[32rem] w-[32rem] rounded-full bg-orange-100/30 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl gap-20 px-6 pt-16 pb-24 lg:grid-cols-2 lg:items-center">
+      <div className="relative mx-auto grid max-w-7xl gap-20 px-6 pt-16 pb-24 lg:grid-cols-2 lg:items-start">
         {/* Left Content */}
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">
@@ -27,7 +27,7 @@ export function Hero() {
           <h1 className="mt-6 max-w-2xl text-5xl font-bold leading-[1.05] tracking-tight text-foreground md:text-6xl xl:text-7xl">
             Protect More Of
             <br />
-            Your Home's Equity.
+            Your Home's Equity
           </h1>
 
           <p className="mt-8 max-w-2xl text-2xl leading-10 text-stone-700">
@@ -56,11 +56,7 @@ export function Hero() {
             </Link>
 
             <Link href="/sellers">
-              <Button
-                size="lg"
-                variant="outline"
-                className="px-10"
-              >
+              <Button size="lg" variant="outline" className="px-10">
                 I'm Selling My Home
               </Button>
             </Link>
@@ -87,7 +83,7 @@ export function Hero() {
         </div>
 
         {/* Right Image */}
-        <div className="relative flex justify-center lg:justify-end">
+        <div className="relative flex flex-col items-center lg:items-end">
           <div className="rounded-[2rem] bg-card p-1 shadow-2xl">
             <Image
               src="/images/whiteDoorWelcome.jpg"
@@ -99,9 +95,9 @@ export function Hero() {
             />
           </div>
 
-          <div className="absolute -bottom-14 left-20 max-w-sm rounded-3xl border border-border bg-card p-8 shadow-xl">
+          <div className="relative z-10 mt-6 w-full max-w-sm rounded-3xl border border-border bg-card p-8 shadow-xl lg:mr-12">
             <p className="text-xl font-semibold text-card-foreground">
-              More than another transaction.
+              More than another transaction
             </p>
 
             <p className="mt-4 leading-7 text-muted-foreground">
