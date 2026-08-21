@@ -58,7 +58,7 @@ export default function CommunitiesPage() {
           <h1 className="mt-6 text-5xl font-bold leading-tight text-foreground md:text-6xl">Explore Phoenix Communities</h1>
           <p className="mt-8 text-xl leading-9 text-foreground">The right home starts with the right location. Explore communities throughout the Greater Phoenix area and discover the places that fit your lifestyle, goals, and budget.</p>
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-foreground">Whether you're looking for an active-adult community, a growing suburban neighborhood, an urban environment, or a desert retreat, I'll help you understand what each area has to offer.</p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4"><Link href="/buyers"><Button size="lg" className="px-8">Search Arizona Homes</Button></Link><Link href="/contact"><Button size="lg" variant="outline" className="px-8">Let's Talk</Button></Link></div>
+          <div className="mt-10 flex flex-wrap justify-center gap-4"><Link href="/buyers"><Button size="lg" className="px-8">Search Arizona Homes</Button></Link><Link href="/contact"><Button size="lg" variant="outline" className="border-stone-300 bg-white px-8 text-stone-900 hover:bg-stone-100 hover:text-stone-900">Let's Talk</Button></Link></div>
         </div></div>
       </section>
 
