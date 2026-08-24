@@ -103,7 +103,7 @@ const structuredData = {
           address: {
             "@type": "PostalAddress",
             addressRegion: "AZ",
-            addressCountry": "US",
+            addressCountry: "US",
           },
         },
         {
