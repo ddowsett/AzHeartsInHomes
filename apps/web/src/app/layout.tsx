@@ -7,7 +7,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 const siteUrl = "https://azheartsinhomes.com";
-const googleAnalyticsId = "G-6WFNVK4T4D";
+const googleAnalyticsId = "G-W6FNVK4T4D";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -31,7 +31,7 @@ const structuredData = {
           address: {
             "@type": "PostalAddress",
             addressRegion: "AZ",
-            "addressCountry": "US",
+            addressCountry: "US",
           },
         },
         {
@@ -40,7 +40,7 @@ const structuredData = {
           address: {
             "@type": "PostalAddress",
             addressRegion: "AZ",
-            "addressCountry": "US",
+            addressCountry: "US",
           },
         },
         {
@@ -49,7 +49,7 @@ const structuredData = {
           address: {
             "@type": "PostalAddress",
             addressRegion: "AZ",
-            "addressCountry": "US",
+            addressCountry: "US",
           },
         },
         {
@@ -58,7 +58,7 @@ const structuredData = {
           address: {
             "@type": "PostalAddress",
             addressRegion: "AZ",
-            "addressCountry": "US",
+            addressCountry: "US",
           },
         },
         {
@@ -67,7 +67,7 @@ const structuredData = {
           address: {
             "@type": "PostalAddress",
             addressRegion: "AZ",
-            "addressCountry": "US",
+            addressCountry: "US",
           },
         },
         {
@@ -76,7 +76,7 @@ const structuredData = {
           address: {
             "@type": "PostalAddress",
             addressRegion: "AZ",
-            "addressCountry": "US",
+            addressCountry: "US",
           },
         },
         {
@@ -85,7 +85,7 @@ const structuredData = {
           address: {
             "@type": "PostalAddress",
             addressRegion: "AZ",
-            "addressCountry": "US",
+            addressCountry: "US",
           },
         },
         {
@@ -94,7 +94,7 @@ const structuredData = {
           address: {
             "@type": "PostalAddress",
             addressRegion: "AZ",
-            "addressCountry": "US",
+            addressCountry: "US",
           },
         },
         {
@@ -103,7 +103,7 @@ const structuredData = {
           address: {
             "@type": "PostalAddress",
             addressRegion: "AZ",
-            "addressCountry": "US",
+            addressCountry: "US",
           },
         },
         {
@@ -112,7 +112,7 @@ const structuredData = {
           address: {
             "@type": "PostalAddress",
             addressRegion: "AZ",
-            "addressCountry": "US",
+            addressCountry: "US",
           },
         },
         {
@@ -121,7 +121,7 @@ const structuredData = {
           address: {
             "@type": "PostalAddress",
             addressRegion: "AZ",
-            "addressCountry": "US",
+            addressCountry: "US",
           },
         },
         {
@@ -130,7 +130,7 @@ const structuredData = {
           address: {
             "@type": "PostalAddress",
             addressRegion: "AZ",
-            "addressCountry": "US",
+            addressCountry: "US",
           },
         },
         {
@@ -139,7 +139,7 @@ const structuredData = {
           address: {
             "@type": "PostalAddress",
             addressRegion: "AZ",
-            "addressCountry": "US",
+            addressCountry: "US",
           },
         },
         {
@@ -148,7 +148,7 @@ const structuredData = {
           address: {
             "@type": "PostalAddress",
             addressRegion: "AZ",
-            "addressCountry": "US",
+            addressCountry: "US",
           },
         },
         {
@@ -157,7 +157,7 @@ const structuredData = {
           address: {
             "@type": "PostalAddress",
             addressRegion: "AZ",
-            "addressCountry": "US",
+            addressCountry: "US",
           },
         },
       ],
@@ -243,7 +243,7 @@ export const metadata: Metadata = {
     siteName: "AZ Hearts In Homes",
     title: "AZ Hearts In Homes | Phoenix AZ Real Estate",
     description:
-      "Full-service real estate representation for buyers and sellers throughout the Greater Phoenix area. Real Estate With Heart.",
+      "Full-service real estate representation throughout the Greater Phoenix area. Real Estate With Heart.",
     images: [
       {
         url: "/images/hearthome-new.png",
