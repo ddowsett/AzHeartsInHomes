@@ -1,8 +1,23 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
+import {
+  escapeHtml,
+  isAllowedFormRequest,
+} from "@/lib/form-security";
+
 export async function POST(request: Request) {
   try {
+    if (!isAllowedFormRequest(request)) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Unable to process this request.",
+        },
+        { status: 403 }
+      );
+    }
+
     const apiKey = process.env.RESEND_API_KEY;
     const destinationEmail = process.env.RESEND_TO_EMAIL;
 
@@ -50,6 +65,12 @@ export async function POST(request: Request) {
       );
     }
 
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safePhone = escapeHtml(phone);
+    const safeInterest = escapeHtml(interest);
+    const safeMessage = escapeHtml(message);
+
     const submittedAt = new Date().toLocaleString("en-US", {
       timeZone: "America/Phoenix",
     });
@@ -63,19 +84,19 @@ export async function POST(request: Request) {
         html: `
           <h2>New Website Contact</h2>
 
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Name:</strong> ${safeName}</p>
+          <p><strong>Email:</strong> ${safeEmail}</p>
           <p><strong>Phone:</strong> ${
-            phone || "Not provided"
+            safePhone || "Not provided"
           }</p>
           <p><strong>Interested In:</strong> ${
-            interest || "Not specified"
+            safeInterest || "Not specified"
           }</p>
           <p><strong>Submitted:</strong> ${submittedAt}</p>
 
           <h3>Message</h3>
 
-          <p>${message}</p>
+          <p>${safeMessage}</p>
         `,
       });
 
@@ -103,7 +124,7 @@ export async function POST(request: Request) {
         html: `
           <h2>Thank You!</h2>
 
-          <p>Hi ${name},</p>
+          <p>Hi ${safeName},</p>
 
           <p>
             Thank you for reaching out to
