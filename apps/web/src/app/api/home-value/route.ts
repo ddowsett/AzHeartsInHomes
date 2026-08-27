@@ -1,8 +1,23 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
+import {
+  escapeHtml,
+  isAllowedFormRequest,
+} from "@/lib/form-security";
+
 export async function POST(request: Request) {
   try {
+    if (!isAllowedFormRequest(request)) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Unable to process this request.",
+        },
+        { status: 403 }
+      );
+    }
+
     // Verify the Resend API key is available.
     const apiKey = process.env.RESEND_API_KEY;
 
@@ -59,6 +74,13 @@ export async function POST(request: Request) {
       );
     }
 
+    const safeName = escapeHtml(String(name).trim());
+    const safeEmail = escapeHtml(String(email).trim());
+    const safePhone = escapeHtml(String(phone || "").trim());
+    const safeCity = escapeHtml(String(city || "").trim());
+    const safeAddress = escapeHtml(String(address).trim());
+    const safeComments = escapeHtml(String(comments || "").trim());
+
     const submittedAt = new Date().toLocaleString("en-US", {
       timeZone: "America/Phoenix",
     });
@@ -73,32 +95,32 @@ export async function POST(request: Request) {
       await resend.emails.send({
         from: "Darek Dowsett <darek@azheartsinhomes.com>",
         to: destinationEmail,
-        replyTo: email,
-        subject: `New Home Valuation Request - ${name}`,
+        replyTo: String(email).trim(),
+        subject: `New Home Valuation Request - ${String(name).trim()}`,
         html: `
           <h2>New Home Valuation Request</h2>
 
           <p>
-            <strong>Name:</strong> ${name}
+            <strong>Name:</strong> ${safeName}
           </p>
 
           <p>
-            <strong>Email:</strong> ${email}
+            <strong>Email:</strong> ${safeEmail}
           </p>
 
           <p>
             <strong>Phone:</strong>
-            ${phone || "Not provided"}
+            ${safePhone || "Not provided"}
           </p>
 
           <p>
             <strong>City:</strong>
-            ${city || "Not provided"}
+            ${safeCity || "Not provided"}
           </p>
 
           <p>
             <strong>Property Address:</strong>
-            ${address}
+            ${safeAddress}
           </p>
 
           <p>
@@ -109,7 +131,7 @@ export async function POST(request: Request) {
           <h3>Additional Information</h3>
 
           <p>
-            ${comments || "No additional information provided."}
+            ${safeComments || "No additional information provided."}
           </p>
         `,
       });
@@ -135,7 +157,7 @@ export async function POST(request: Request) {
     const { error: confirmationEmailError } =
       await resend.emails.send({
         from: "Darek Dowsett <darek@azheartsinhomes.com>",
-        to: email,
+        to: String(email).trim(),
         subject:
           "We've Received Your Home Valuation Request",
         html: `
