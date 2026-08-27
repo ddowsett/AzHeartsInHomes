@@ -7,7 +7,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 const siteUrl = "https://azheartsinhomes.com";
-const googleAnalyticsId = "G-W6FNVK4T4D";
+const googleAnalyticsId = "G-W6FVNK4T4D";
 
 const structuredData = {
   "@context": "https://schema.org",
