@@ -2,21 +2,8 @@ const requestHistory = new Map<string, number[]>();
 
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_REQUESTS = 5;
-const SITE_ORIGIN = "https://azheartsinhomes.com";
 
 export function isAllowedFormRequest(request: Request): boolean {
-  const origin = request.headers.get("origin");
-  const referer = request.headers.get("referer");
-
-  const hasTrustedOrigin =
-    origin === SITE_ORIGIN ||
-    origin === `${SITE_ORIGIN}/` ||
-    referer?.startsWith(`${SITE_ORIGIN}/`);
-
-  if (!hasTrustedOrigin) {
-    return false;
-  }
-
   const userAgent = request.headers.get("user-agent") || "";
   const automatedUserAgent =
     /bot|crawler|spider|scrapy|curl|wget|python-requests|httpclient/i.test(
