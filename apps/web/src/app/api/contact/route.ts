@@ -6,6 +6,9 @@ import {
   isAllowedFormRequest,
 } from "@/lib/form-security";
 
+const turnstileSiteVerifyUrl =
+  "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+
 export async function POST(request: Request) {
   try {
     if (!isAllowedFormRequest(request)) {
@@ -20,6 +23,82 @@ export async function POST(request: Request) {
 
     const apiKey = process.env.RESEND_API_KEY;
     const destinationEmail = process.env.RESEND_TO_EMAIL;
+    const turnstileSecretKey = process.env.TURNSTILE_SECRET_KEY;
+
+    if (!turnstileSecretKey) {
+      console.error("TURNSTILE_SECRET_KEY is missing.");
+
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Form security is not configured.",
+        },
+        { status: 500 }
+      );
+    }
+
+    const body = await request.json();
+    const turnstileToken = String(body.turnstileToken || "").trim();
+
+    if (!turnstileToken) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Please complete the security check and try again.",
+        },
+        { status: 400 }
+      );
+    }
+
+    const forwardedFor = request.headers.get("x-forwarded-for");
+    const clientIp =
+      forwardedFor?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip") ||
+      undefined;
+
+    const turnstileResponse = await fetch(turnstileSiteVerifyUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        secret: turnstileSecretKey,
+        response: turnstileToken,
+        ...(clientIp ? { remoteip: clientIp } : {}),
+      }),
+    });
+
+    if (!turnstileResponse.ok) {
+      console.error(
+        "Turnstile verification request failed:",
+        turnstileResponse.status
+      );
+
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Unable to verify the security check. Please try again.",
+        },
+        { status: 403 }
+      );
+    }
+
+    const turnstileResult = await turnstileResponse.json();
+
+    if (!turnstileResult.success) {
+      console.warn(
+        "Turnstile verification rejected the request:",
+        turnstileResult["error-codes"] || []
+      );
+
+      return NextResponse.json(
+        {
+          success: false,
+          message: "The security check could not be verified. Please try again.",
+        },
+        { status: 403 }
+      );
+    }
 
     if (!apiKey) {
       console.error("RESEND_API_KEY is missing.");
@@ -46,8 +125,6 @@ export async function POST(request: Request) {
     }
 
     const resend = new Resend(apiKey);
-
-    const body = await request.json();
 
     const name = String(body.name || "").trim();
     const email = String(body.email || "").trim();
@@ -86,12 +163,8 @@ export async function POST(request: Request) {
 
           <p><strong>Name:</strong> ${safeName}</p>
           <p><strong>Email:</strong> ${safeEmail}</p>
-          <p><strong>Phone:</strong> ${
-            safePhone || "Not provided"
-          }</p>
-          <p><strong>Interested In:</strong> ${
-            safeInterest || "Not specified"
-          }</p>
+          <p><strong>Phone:</strong> ${safePhone || "Not provided"}</p>
+          <p><strong>Interested In:</strong> ${safeInterest || "Not specified"}</p>
           <p><strong>Submitted:</strong> ${submittedAt}</p>
 
           <h3>Message</h3>
@@ -101,10 +174,7 @@ export async function POST(request: Request) {
       });
 
     if (ownerEmailError) {
-      console.error(
-        "Resend contact email error:",
-        ownerEmailError
-      );
+      console.error("Resend contact email error:", ownerEmailError);
 
       return NextResponse.json(
         {
@@ -119,8 +189,7 @@ export async function POST(request: Request) {
       await resend.emails.send({
         from: "Darek Dowsett <darek@azheartsinhomes.com>",
         to: email,
-        subject:
-          "Thank You for Contacting AZ Hearts In Homes",
+        subject: "Thank You for Contacting AZ Hearts In Homes",
         html: `
           <h2>Thank You!</h2>
 
@@ -172,8 +241,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         success: false,
-        message:
-          "Something went wrong while sending your message.",
+        message: "Something went wrong while sending your message.",
       },
       { status: 500 }
     );
