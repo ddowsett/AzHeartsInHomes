@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Script from "next/script";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   CheckCircle2,
   Mail,
@@ -16,6 +16,26 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 const turnstileSiteKey = "0x4AAAAAAEf0IbTnvduq82kh";
+
+type TurnstileInstance = {
+  render: (
+    container: HTMLElement,
+    options: {
+      sitekey: string;
+      callback: (token: string) => void;
+      "expired-callback": () => void;
+      "error-callback": () => void;
+    }
+  ) => string;
+  reset: (widgetId?: string) => void;
+  remove: (widgetId: string) => void;
+};
+
+declare global {
+  interface Window {
+    turnstile?: TurnstileInstance;
+  }
+}
 
 type FormData = {
   name: string;
@@ -38,6 +58,47 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [turnstileReady, setTurnstileReady] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileContainerRef = useRef<HTMLDivElement>(null);
+  const turnstileWidgetIdRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!turnstileReady || !turnstileContainerRef.current || !window.turnstile) {
+      return;
+    }
+
+    if (turnstileWidgetIdRef.current) {
+      return;
+    }
+
+    turnstileWidgetIdRef.current = window.turnstile.render(
+      turnstileContainerRef.current,
+      {
+        sitekey: turnstileSiteKey,
+        callback: (token) => {
+          setTurnstileToken(token);
+          setError("");
+        },
+        "expired-callback": () => {
+          setTurnstileToken("");
+        },
+        "error-callback": () => {
+          setTurnstileToken("");
+          setError(
+            "The security check could not be loaded. Please refresh the page and try again."
+          );
+        },
+      }
+    );
+
+    return () => {
+      if (turnstileWidgetIdRef.current && window.turnstile) {
+        window.turnstile.remove(turnstileWidgetIdRef.current);
+        turnstileWidgetIdRef.current = null;
+      }
+    };
+  }, [turnstileReady]);
 
   function updateField(field: keyof FormData, value: string) {
     setForm((current) => ({
@@ -48,9 +109,7 @@ export default function ContactPage() {
     setError("");
   }
 
-  async function handleSubmit(
-    event: React.FormEvent<HTMLFormElement>
-  ) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     setError("");
@@ -70,10 +129,6 @@ export default function ContactPage() {
       setError("Please enter a message.");
       return;
     }
-
-    const turnstileToken = String(
-      new FormData(event.currentTarget).get("cf-turnstile-response") || ""
-    ).trim();
 
     if (!turnstileToken) {
       setError("Please complete the security check and try again.");
@@ -104,6 +159,7 @@ export default function ContactPage() {
 
       setSuccess(true);
       setForm(initialForm);
+      setTurnstileToken("");
     } catch (err) {
       console.error("Contact form error:", err);
 
@@ -115,13 +171,9 @@ export default function ContactPage() {
     } finally {
       setIsSubmitting(false);
 
-      const turnstile = (
-        window as Window & {
-          turnstile?: { reset: () => void };
-        }
-      ).turnstile;
-
-      turnstile?.reset();
+      if (turnstileWidgetIdRef.current && window.turnstile) {
+        window.turnstile.reset(turnstileWidgetIdRef.current);
+      }
     }
   }
 
@@ -130,6 +182,12 @@ export default function ContactPage() {
       <Script
         src="https://challenges.cloudflare.com/turnstile/v0/api.js"
         strategy="afterInteractive"
+        onLoad={() => setTurnstileReady(true)}
+        onError={() => {
+          setError(
+            "The security check could not be loaded. Please refresh the page and try again."
+          );
+        }}
       />
 
       <main className="bg-background">
@@ -411,12 +469,16 @@ export default function ContactPage() {
                         />
                       </div>
 
-                      <div className="cf-turnstile" data-sitekey={turnstileSiteKey} />
+                      <div
+                        ref={turnstileContainerRef}
+                        className="min-h-[65px]"
+                        aria-label="Security verification"
+                      />
 
                       <Button
                         type="submit"
                         size="lg"
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || !turnstileToken}
                         className="px-10"
                       >
                         {isSubmitting ? "Sending..." : "Send Message"}
