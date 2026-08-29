@@ -112,7 +112,6 @@ export default function ContactPage() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
     setError("");
     setSuccess(false);
 
@@ -131,8 +130,8 @@ export default function ContactPage() {
       return;
     }
 
-    // Read the token directly from Turnstile when the user submits.
-    // The button is intentionally not disabled based on React token state.
+    // Always read the token directly from Turnstile at submit time.
+    // React state must not determine whether the submit button can fire.
     const currentTurnstileToken =
       turnstileWidgetIdRef.current && window.turnstile
         ? window.turnstile.getResponse(turnstileWidgetIdRef.current)
@@ -168,7 +167,6 @@ export default function ContactPage() {
       setTurnstileToken("");
     } catch (err) {
       console.error("Contact form error:", err);
-
       setError(
         err instanceof Error
           ? err.message
@@ -176,7 +174,6 @@ export default function ContactPage() {
       );
     } finally {
       setIsSubmitting(false);
-
       if (turnstileWidgetIdRef.current && window.turnstile) {
         window.turnstile.reset(turnstileWidgetIdRef.current);
       }
@@ -269,7 +266,9 @@ export default function ContactPage() {
               </div>
 
               <div className="mt-12 border-t border-border pt-8">
-                <h3 className="text-xl font-bold">Looking for something specific?</h3>
+                <h3 className="text-xl font-bold">
+                  Looking for something specific?
+                </h3>
                 <div className="mt-6 space-y-3">
                   <Link
                     href="/buyers"
@@ -301,7 +300,9 @@ export default function ContactPage() {
                 {success ? (
                   <div className="flex min-h-[500px] flex-col items-center justify-center text-center">
                     <CheckCircle2 className="h-16 w-16 text-orange-500" />
-                    <h2 className="mt-6 text-3xl font-bold">Message Received!</h2>
+                    <h2 className="mt-6 text-3xl font-bold">
+                      Message Received!
+                    </h2>
                     <p className="mt-5 max-w-lg text-lg leading-8 text-muted-foreground">
                       Thank you for reaching out to AZ Hearts In Homes. I&apos;ve
                       received your message and will get back to you as soon as
@@ -409,7 +410,9 @@ export default function ContactPage() {
                             <option value="">Select an option</option>
                             <option value="buying">Buying a Home</option>
                             <option value="selling">Selling a Home</option>
-                            <option value="buying-and-selling">Buying &amp; Selling</option>
+                            <option value="buying-and-selling">
+                              Buying &amp; Selling
+                            </option>
                             <option value="home-value">Home Value</option>
                             <option value="general">General Question</option>
                           </select>
@@ -462,7 +465,9 @@ export default function ContactPage() {
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">
               WHAT YOU CAN EXPECT
             </p>
-            <h2 className="mt-4 text-4xl font-bold">Honest Guidance. No Pressure.</h2>
+            <h2 className="mt-4 text-4xl font-bold">
+              Honest Guidance. No Pressure.
+            </h2>
             <p className="mt-8 text-lg leading-8 text-muted-foreground">
               Your first conversation doesn&apos;t have to be a commitment.
               We&apos;ll simply talk about your situation, your goals, and what
@@ -480,7 +485,9 @@ export default function ContactPage() {
               </div>
               <div className="rounded-3xl bg-background p-7">
                 <CheckCircle2 className="h-8 w-8 text-orange-500" />
-                <h3 className="mt-5 text-xl font-bold">Clear Communication</h3>
+                <h3 className="mt-5 text-xl font-bold">
+                  Clear Communication
+                </h3>
                 <p className="mt-3 leading-7 text-muted-foreground">
                   You&apos;ll know what is happening, what comes next, and what
                   decisions may need your attention.
