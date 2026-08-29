@@ -89,11 +89,13 @@ export async function POST(request: Request) {
 
     if (
       !turnstileResult.success ||
+      turnstileResult.action !== "home_value" ||
       !allowedTurnstileHostnames.has(String(turnstileResult.hostname || ""))
     ) {
       console.warn(
         "Home valuation Turnstile verification rejected:",
         turnstileResult["error-codes"] || [],
+        turnstileResult.action || "unknown-action",
         turnstileResult.hostname || "unknown-host"
       );
 
