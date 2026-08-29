@@ -55,7 +55,6 @@ export default function HomeValuePage() {
       turnstileContainerRef.current,
       {
         sitekey: turnstileSiteKey,
-        action: "home_value",
         callback: (token) => {
           setTurnstileToken(token);
           setError("");
