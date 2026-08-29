@@ -2,13 +2,8 @@
 
 import Link from "next/link";
 import Script from "next/script";
-import { useEffect, useRef, useState } from "react";
-import {
-  CheckCircle2,
-  Mail,
-  MapPin,
-  Phone,
-} from "lucide-react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { CheckCircle2, Mail, MapPin, Phone } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -27,6 +22,7 @@ type TurnstileInstance = {
       "error-callback": () => void;
     }
   ) => string;
+  getResponse: (widgetId?: string) => string;
   reset: (widgetId?: string) => void;
   remove: (widgetId: string) => void;
 };
@@ -64,7 +60,11 @@ export default function ContactPage() {
   const turnstileWidgetIdRef = useRef<string | null>(null);
 
   useEffect(() => {
-    if (!turnstileReady || !turnstileContainerRef.current || !window.turnstile) {
+    if (
+      !turnstileReady ||
+      !turnstileContainerRef.current ||
+      !window.turnstile
+    ) {
       return;
     }
 
@@ -105,11 +105,10 @@ export default function ContactPage() {
       ...current,
       [field]: value,
     }));
-
     setError("");
   }
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     setError("");
@@ -130,7 +129,15 @@ export default function ContactPage() {
       return;
     }
 
-    if (!turnstileToken) {
+    // Read the token directly from the Turnstile widget at submission time.
+    // React state is only a convenience indicator and should not control
+    // whether the form's submit event can fire.
+    const currentTurnstileToken =
+      turnstileWidgetIdRef.current && window.turnstile
+        ? window.turnstile.getResponse(turnstileWidgetIdRef.current)
+        : turnstileToken;
+
+    if (!currentTurnstileToken) {
       setError("Please complete the security check and try again.");
       return;
     }
@@ -145,16 +152,14 @@ export default function ContactPage() {
         },
         body: JSON.stringify({
           ...form,
-          turnstileToken,
+          turnstileToken: currentTurnstileToken,
         }),
       });
 
       const data = await response.json();
 
       if (!response.ok || !data.success) {
-        throw new Error(
-          data.message || "Unable to send your message."
-        );
+        throw new Error(data.message || "Unable to send your message.");
       }
 
       setSuccess(true);
@@ -196,11 +201,9 @@ export default function ContactPage() {
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">
               LET&apos;S TALK
             </p>
-
             <h1 className="mt-6 text-5xl font-bold leading-tight text-foreground md:text-6xl">
               How Can I Help?
             </h1>
-
             <p className="mt-8 text-xl leading-9 text-muted-foreground">
               Whether you&apos;re thinking about buying, preparing to sell, or
               simply have a real estate question, I&apos;m happy to talk through
@@ -215,15 +218,13 @@ export default function ContactPage() {
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">
                 GET IN TOUCH
               </p>
-
               <h2 className="mt-4 text-4xl font-bold">
                 Start With A Conversation.
               </h2>
-
               <p className="mt-6 text-lg leading-8 text-muted-foreground">
-                Real estate decisions are personal and often involve significant
-                financial considerations. My goal is to understand what matters
-                to you before recommending a strategy.
+                Real estate decisions are personal and often involve
+                significant financial considerations. My goal is to understand
+                what matters to you before recommending a strategy.
               </p>
 
               <div className="mt-10 space-y-7">
@@ -267,10 +268,7 @@ export default function ContactPage() {
               </div>
 
               <div className="mt-12 border-t border-border pt-8">
-                <h3 className="text-xl font-bold">
-                  Looking for something specific?
-                </h3>
-
+                <h3 className="text-xl font-bold">Looking for something specific?</h3>
                 <div className="mt-6 space-y-3">
                   <Link
                     href="/buyers"
@@ -279,7 +277,6 @@ export default function ContactPage() {
                     <CheckCircle2 className="h-5 w-5 text-orange-500" />
                     I&apos;m looking to buy a home
                   </Link>
-
                   <Link
                     href="/sellers"
                     className="flex items-center gap-3 text-muted-foreground transition hover:text-orange-600"
@@ -287,7 +284,6 @@ export default function ContactPage() {
                     <CheckCircle2 className="h-5 w-5 text-orange-500" />
                     I&apos;m thinking about selling
                   </Link>
-
                   <Link
                     href="/home-value"
                     className="flex items-center gap-3 text-muted-foreground transition hover:text-orange-600"
@@ -304,22 +300,16 @@ export default function ContactPage() {
                 {success ? (
                   <div className="flex min-h-[500px] flex-col items-center justify-center text-center">
                     <CheckCircle2 className="h-16 w-16 text-orange-500" />
-
-                    <h2 className="mt-6 text-3xl font-bold">
-                      Message Received!
-                    </h2>
-
+                    <h2 className="mt-6 text-3xl font-bold">Message Received!</h2>
                     <p className="mt-5 max-w-lg text-lg leading-8 text-muted-foreground">
                       Thank you for reaching out to AZ Hearts In Homes. I&apos;ve
                       received your message and will get back to you as soon as
                       possible.
                     </p>
-
                     <p className="mt-4 text-muted-foreground">
                       I appreciate the opportunity to help with your real estate
                       needs.
                     </p>
-
                     <Button
                       type="button"
                       variant="outline"
@@ -332,10 +322,7 @@ export default function ContactPage() {
                   </div>
                 ) : (
                   <>
-                    <h2 className="text-3xl font-bold">
-                      Send Me A Message
-                    </h2>
-
+                    <h2 className="text-3xl font-bold">Send Me A Message</h2>
                     <p className="mt-4 text-muted-foreground">
                       Complete the form below and I&apos;ll get back to you as
                       soon as possible.
@@ -350,19 +337,12 @@ export default function ContactPage() {
                       </div>
                     )}
 
-                    <form
-                      onSubmit={handleSubmit}
-                      className="mt-10 space-y-7"
-                    >
+                    <form onSubmit={handleSubmit} className="mt-10 space-y-7">
                       <div className="grid gap-7 md:grid-cols-2">
                         <div>
-                          <label
-                            htmlFor="name"
-                            className="text-sm font-medium"
-                          >
+                          <label htmlFor="name" className="text-sm font-medium">
                             Name *
                           </label>
-
                           <Input
                             id="name"
                             name="name"
@@ -371,18 +351,15 @@ export default function ContactPage() {
                               updateField("name", event.target.value)
                             }
                             disabled={isSubmitting}
+                            required
                             className="mt-2"
                           />
                         </div>
 
                         <div>
-                          <label
-                            htmlFor="email"
-                            className="text-sm font-medium"
-                          >
+                          <label htmlFor="email" className="text-sm font-medium">
                             Email *
                           </label>
-
                           <Input
                             id="email"
                             name="email"
@@ -392,18 +369,15 @@ export default function ContactPage() {
                               updateField("email", event.target.value)
                             }
                             disabled={isSubmitting}
+                            required
                             className="mt-2"
                           />
                         </div>
 
                         <div>
-                          <label
-                            htmlFor="phone"
-                            className="text-sm font-medium"
-                          >
+                          <label htmlFor="phone" className="text-sm font-medium">
                             Phone
                           </label>
-
                           <Input
                             id="phone"
                             name="phone"
@@ -418,13 +392,9 @@ export default function ContactPage() {
                         </div>
 
                         <div>
-                          <label
-                            htmlFor="interest"
-                            className="text-sm font-medium"
-                          >
+                          <label htmlFor="interest" className="text-sm font-medium">
                             I&apos;m Interested In
                           </label>
-
                           <select
                             id="interest"
                             name="interest"
@@ -438,9 +408,7 @@ export default function ContactPage() {
                             <option value="">Select an option</option>
                             <option value="buying">Buying a Home</option>
                             <option value="selling">Selling a Home</option>
-                            <option value="buying-and-selling">
-                              Buying &amp; Selling
-                            </option>
+                            <option value="buying-and-selling">Buying &amp; Selling</option>
                             <option value="home-value">Home Value</option>
                             <option value="general">General Question</option>
                           </select>
@@ -448,13 +416,9 @@ export default function ContactPage() {
                       </div>
 
                       <div>
-                        <label
-                          htmlFor="message"
-                          className="text-sm font-medium"
-                        >
+                        <label htmlFor="message" className="text-sm font-medium">
                           Message *
                         </label>
-
                         <Textarea
                           id="message"
                           name="message"
@@ -463,9 +427,10 @@ export default function ContactPage() {
                             updateField("message", event.target.value)
                           }
                           disabled={isSubmitting}
+                          required
                           rows={7}
                           className="mt-2"
-                          placeholder="Tell me a little about what you're looking for..."
+                          placeholder="Tell me a little about what you&apos;re looking for..."
                         />
                       </div>
 
@@ -478,7 +443,7 @@ export default function ContactPage() {
                       <Button
                         type="submit"
                         size="lg"
-                        disabled={isSubmitting || !turnstileToken}
+                        disabled={isSubmitting}
                         className="px-10"
                       >
                         {isSubmitting ? "Sending..." : "Send Message"}
@@ -496,11 +461,7 @@ export default function ContactPage() {
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">
               WHAT YOU CAN EXPECT
             </p>
-
-            <h2 className="mt-4 text-4xl font-bold">
-              Honest Guidance. No Pressure.
-            </h2>
-
+            <h2 className="mt-4 text-4xl font-bold">Honest Guidance. No Pressure.</h2>
             <p className="mt-8 text-lg leading-8 text-muted-foreground">
               Your first conversation doesn&apos;t have to be a commitment.
               We&apos;ll simply talk about your situation, your goals, and what
@@ -516,45 +477,23 @@ export default function ContactPage() {
                   recommending a strategy.
                 </p>
               </div>
-
               <div className="rounded-3xl bg-background p-7">
                 <CheckCircle2 className="h-8 w-8 text-orange-500" />
-                <h3 className="mt-5 text-xl font-bold">Clear Advice</h3>
+                <h3 className="mt-5 text-xl font-bold">Clear Communication</h3>
                 <p className="mt-3 leading-7 text-muted-foreground">
-                  You&apos;ll receive straightforward information so you can
-                  make decisions with confidence.
+                  You&apos;ll know what is happening, what comes next, and what
+                  decisions may need your attention.
                 </p>
               </div>
-
               <div className="rounded-3xl bg-background p-7">
                 <CheckCircle2 className="h-8 w-8 text-orange-500" />
                 <h3 className="mt-5 text-xl font-bold">No Pressure</h3>
                 <p className="mt-3 leading-7 text-muted-foreground">
-                  My goal is to earn your trust—not pressure you into a
-                  transaction.
+                  My job is to provide honest guidance so you can make the
+                  decision that is right for you.
                 </p>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section className="bg-stone-900 py-24 text-white">
-          <div className="mx-auto max-w-3xl px-6 text-center">
-            <h2 className="text-5xl font-bold">Let&apos;s Talk Real Estate.</h2>
-
-            <p className="mt-8 text-xl leading-9 text-stone-300">
-              Whether you&apos;re buying, selling, or simply planning your next
-              move, I&apos;m here to help.
-            </p>
-
-            <a href="tel:+1480773213" className="mt-12 inline-block">
-              <Button
-                size="lg"
-                className="bg-orange-500 px-10 hover:bg-orange-600"
-              >
-                Call (480) 773-3213
-              </Button>
-            </a>
           </div>
         </section>
       </main>
