@@ -19,26 +19,6 @@ import { Textarea } from "@/components/ui/textarea";
 
 const turnstileSiteKey = "0x4AAAAAAEf0IbTnvduq82kh";
 
-type Turnstile = {
-  render: (
-    container: HTMLElement,
-    options: {
-      sitekey: string;
-      action?: string;
-      callback?: (token: string) => void;
-      "expired-callback"?: () => void;
-      "error-callback"?: () => void;
-    }
-  ) => string | number;
-  reset: (widgetId?: string | number) => void;
-};
-
-declare global {
-  interface Window {
-    turnstile?: Turnstile;
-  }
-}
-
 export default function HomeValuePage() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -83,7 +63,9 @@ export default function HomeValuePage() {
         "expired-callback": () => setTurnstileToken(""),
         "error-callback": () => {
           setTurnstileToken("");
-          setError("The security check could not be loaded. Please refresh and try again.");
+          setError(
+            "The security check could not be loaded. Please refresh and try again."
+          );
         },
       }
     );
