@@ -25,7 +25,7 @@ export default function HomeValuePage() {
   const [error, setError] = useState("");
   const [turnstileToken, setTurnstileToken] = useState("");
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
-  const turnstileWidgetId = useRef<string | number | null>(null);
+  const turnstileWidgetId = useRef<string | null>(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -51,7 +51,7 @@ export default function HomeValuePage() {
       return;
     }
 
-    turnstileWidgetId.current = window.turnstile.render(
+    const widgetId = window.turnstile.render(
       turnstileContainerRef.current,
       {
         sitekey: turnstileSiteKey,
@@ -68,6 +68,8 @@ export default function HomeValuePage() {
         },
       }
     );
+
+    turnstileWidgetId.current = String(widgetId);
   }
 
   useEffect(() => {
@@ -173,10 +175,7 @@ export default function HomeValuePage() {
       setLoading(false);
       setTurnstileToken("");
 
-      if (
-        window.turnstile &&
-        turnstileWidgetId.current !== null
-      ) {
+      if (window.turnstile && turnstileWidgetId.current !== null) {
         window.turnstile.reset(turnstileWidgetId.current);
       }
     }
