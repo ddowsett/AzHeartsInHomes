@@ -17,6 +17,7 @@ type TurnstileInstance = {
     container: HTMLElement,
     options: {
       sitekey: string;
+      action?: string;
       callback: (token: string) => void;
       "expired-callback": () => void;
       "error-callback": () => void;
@@ -76,6 +77,7 @@ export default function ContactPage() {
       turnstileContainerRef.current,
       {
         sitekey: turnstileSiteKey,
+        action: "contact",
         callback: (token) => {
           setTurnstileToken(token);
           setError("");
@@ -129,9 +131,8 @@ export default function ContactPage() {
       return;
     }
 
-    // Read the token directly from the Turnstile widget at submission time.
-    // React state is only a convenience indicator and should not control
-    // whether the form's submit event can fire.
+    // Read the token directly from Turnstile when the user submits.
+    // The button is intentionally not disabled based on React token state.
     const currentTurnstileToken =
       turnstileWidgetIdRef.current && window.turnstile
         ? window.turnstile.getResponse(turnstileWidgetIdRef.current)
