@@ -6,6 +6,14 @@ import {
   isAllowedFormRequest,
 } from "@/lib/form-security";
 
+const turnstileSiteVerifyUrl =
+  "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+
+const allowedTurnstileHostnames = new Set([
+  "azheartsinhomes.com",
+  "www.azheartsinhomes.com",
+]);
+
 export async function POST(request: Request) {
   try {
     if (!isAllowedFormRequest(request)) {
@@ -18,12 +26,91 @@ export async function POST(request: Request) {
       );
     }
 
-    // Verify the Resend API key is available.
+    const body = await request.json();
+    const turnstileToken = String(body.turnstileToken || "").trim();
+    const turnstileSecretKey = process.env.TURNSTILE_SECRET_KEY;
+
+    if (!turnstileSecretKey) {
+      console.error("TURNSTILE_SECRET_KEY is missing.");
+
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Form security is not configured.",
+        },
+        { status: 500 }
+      );
+    }
+
+    if (!turnstileToken || turnstileToken.length > 2048) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Please complete the security check and try again.",
+        },
+        { status: 400 }
+      );
+    }
+
+    const forwardedFor = request.headers.get("x-forwarded-for");
+    const clientIp =
+      forwardedFor?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip") ||
+      undefined;
+
+    const turnstileResponse = await fetch(turnstileSiteVerifyUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        secret: turnstileSecretKey,
+        response: turnstileToken,
+        ...(clientIp ? { remoteip: clientIp } : {}),
+      }),
+    });
+
+    if (!turnstileResponse.ok) {
+      console.error(
+        "Turnstile verification request failed:",
+        turnstileResponse.status
+      );
+
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Unable to verify the security check. Please try again.",
+        },
+        { status: 403 }
+      );
+    }
+
+    const turnstileResult = await turnstileResponse.json();
+
+    if (
+      !turnstileResult.success ||
+      !allowedTurnstileHostnames.has(String(turnstileResult.hostname || ""))
+    ) {
+      console.warn(
+        "Home valuation Turnstile verification rejected:",
+        turnstileResult["error-codes"] || [],
+        turnstileResult.hostname || "unknown-host"
+      );
+
+      return NextResponse.json(
+        {
+          success: false,
+          message: "The security check could not be verified. Please try again.",
+        },
+        { status: 403 }
+      );
+    }
+
     const apiKey = process.env.RESEND_API_KEY;
 
     if (!apiKey) {
       console.error("RESEND_API_KEY is missing.");
-      
+
       return NextResponse.json(
         {
           success: false,
@@ -33,7 +120,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Verify the destination email is available.
     const destinationEmail = process.env.RESEND_TO_EMAIL;
 
     if (!destinationEmail) {
@@ -48,10 +134,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Initialize Resend after verifying the API key exists.
     const resend = new Resend(apiKey);
-
-    const body = await request.json();
 
     const {
       name,
@@ -62,7 +145,6 @@ export async function POST(request: Request) {
       comments,
     } = body;
 
-    // Server-side validation.
     if (!name?.trim() || !email?.trim() || !address?.trim()) {
       return NextResponse.json(
         {
@@ -85,12 +167,6 @@ export async function POST(request: Request) {
       timeZone: "America/Phoenix",
     });
 
-    /*
-     * Send the lead notification to Darek.
-     *
-     * replyTo allows you to simply click Reply in Gmail
-     * and respond directly to the prospective seller.
-     */
     const { error: ownerEmailError } =
       await resend.emails.send({
         from: "Darek Dowsett <darek@azheartsinhomes.com>",
@@ -100,39 +176,15 @@ export async function POST(request: Request) {
         html: `
           <h2>New Home Valuation Request</h2>
 
-          <p>
-            <strong>Name:</strong> ${safeName}
-          </p>
-
-          <p>
-            <strong>Email:</strong> ${safeEmail}
-          </p>
-
-          <p>
-            <strong>Phone:</strong>
-            ${safePhone || "Not provided"}
-          </p>
-
-          <p>
-            <strong>City:</strong>
-            ${safeCity || "Not provided"}
-          </p>
-
-          <p>
-            <strong>Property Address:</strong>
-            ${safeAddress}
-          </p>
-
-          <p>
-            <strong>Submitted:</strong>
-            ${submittedAt}
-          </p>
+          <p><strong>Name:</strong> ${safeName}</p>
+          <p><strong>Email:</strong> ${safeEmail}</p>
+          <p><strong>Phone:</strong> ${safePhone || "Not provided"}</p>
+          <p><strong>City:</strong> ${safeCity || "Not provided"}</p>
+          <p><strong>Property Address:</strong> ${safeAddress}</p>
+          <p><strong>Submitted:</strong> ${submittedAt}</p>
 
           <h3>Additional Information</h3>
-
-          <p>
-            ${safeComments || "No additional information provided."}
-          </p>
+          <p>${safeComments || "No additional information provided."}</p>
         `,
       });
 
@@ -151,9 +203,6 @@ export async function POST(request: Request) {
       );
     }
 
-    /*
-     * Send confirmation email to the prospective seller.
-     */
     const { error: confirmationEmailError } =
       await resend.emails.send({
         from: "Darek Dowsett <darek@azheartsinhomes.com>",
@@ -192,10 +241,6 @@ export async function POST(request: Request) {
         confirmationEmailError
       );
 
-      /*
-       * The lead email was successfully delivered to Darek,
-       * so the lead itself should still be considered successful.
-       */
       return NextResponse.json({
         success: true,
         confirmationSent: false,
