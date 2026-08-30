@@ -11,7 +11,7 @@ applications:
         build:
           commands:
             - rm -f apps/web/.env.production
-            - env | grep -e '^RESEND_API_KEY=' -e '^RESEND_TO_EMAIL=' >> apps/web/.env.production
+            - env | grep -e '^RESEND_API_KEY=' -e '^RESEND_TO_EMAIL=' -e '^TURNSTILE_SECRET_KEY=' >> apps/web/.env.production
             - pnpm --filter web exec next build --webpack
             - rm -rf /tmp/web-deploy apps/web/node_modules
             - pnpm --filter web deploy --prod --legacy /tmp/web-deploy
