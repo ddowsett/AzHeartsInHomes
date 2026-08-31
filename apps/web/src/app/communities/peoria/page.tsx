@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Baseball,
   CheckCircle2,
   Home,
   MapPin,
@@ -184,7 +183,7 @@ export default function PeoriaPage() {
           <div className="grid gap-8 md:grid-cols-3">
             {[
               {
-                icon: Baseball,
+                icon: Sun,
                 title: "Spring Training Baseball",
                 text:
                   "Peoria Sports Complex is the Spring Training home shared by the San Diego Padres and Seattle Mariners, giving Peoria residents easy access to Cactus League baseball.",
@@ -255,7 +254,7 @@ export default function PeoriaPage() {
 
           <Card className="rounded-3xl border-orange-100 bg-orange-50">
             <CardContent className="p-8 md:p-10">
-              <Baseball className="h-12 w-12 text-orange-500" />
+              <Sun className="h-12 w-12 text-orange-500" />
 
               <h3 className="mt-6 text-3xl font-bold">
                 A True Cactus League Destination
