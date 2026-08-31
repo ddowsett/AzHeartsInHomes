@@ -9,6 +9,11 @@ import {
 const turnstileSiteVerifyUrl =
   "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 
+const allowedTurnstileHostnames = new Set([
+  "azheartsinhomes.com",
+  "www.azheartsinhomes.com",
+]);
+
 export async function POST(request: Request) {
   try {
     if (!isAllowedFormRequest(request)) {
@@ -40,7 +45,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const turnstileToken = String(body.turnstileToken || "").trim();
 
-    if (!turnstileToken) {
+    if (!turnstileToken || turnstileToken.length > 2048) {
       return NextResponse.json(
         {
           success: false,
@@ -85,10 +90,16 @@ export async function POST(request: Request) {
 
     const turnstileResult = await turnstileResponse.json();
 
-    if (!turnstileResult.success) {
+    if (
+      !turnstileResult.success ||
+      turnstileResult.action !== "contact" ||
+      !allowedTurnstileHostnames.has(String(turnstileResult.hostname || ""))
+    ) {
       console.warn(
-        "Turnstile verification rejected the request:",
-        turnstileResult["error-codes"] || []
+        "Contact Turnstile verification rejected:",
+        turnstileResult["error-codes"] || [],
+        turnstileResult.action || "unknown-action",
+        turnstileResult.hostname || "unknown-host"
       );
 
       return NextResponse.json(
@@ -152,26 +163,25 @@ export async function POST(request: Request) {
       timeZone: "America/Phoenix",
     });
 
-    const { error: ownerEmailError } =
-      await resend.emails.send({
-        from: "Darek Dowsett <darek@azheartsinhomes.com>",
-        to: destinationEmail,
-        replyTo: email,
-        subject: `New Website Contact - ${name}`,
-        html: `
-          <h2>New Website Contact</h2>
+    const { error: ownerEmailError } = await resend.emails.send({
+      from: "Darek Dowsett <darek@azheartsinhomes.com>",
+      to: destinationEmail,
+      replyTo: email,
+      subject: `New Website Contact - ${name}`,
+      html: `
+        <h2>New Website Contact</h2>
 
-          <p><strong>Name:</strong> ${safeName}</p>
-          <p><strong>Email:</strong> ${safeEmail}</p>
-          <p><strong>Phone:</strong> ${safePhone || "Not provided"}</p>
-          <p><strong>Interested In:</strong> ${safeInterest || "Not specified"}</p>
-          <p><strong>Submitted:</strong> ${submittedAt}</p>
+        <p><strong>Name:</strong> ${safeName}</p>
+        <p><strong>Email:</strong> ${safeEmail}</p>
+        <p><strong>Phone:</strong> ${safePhone || "Not provided"}</p>
+        <p><strong>Interested In:</strong> ${safeInterest || "Not specified"}</p>
+        <p><strong>Submitted:</strong> ${submittedAt}</p>
 
-          <h3>Message</h3>
+        <h3>Message</h3>
 
-          <p>${safeMessage}</p>
-        `,
-      });
+        <p>${safeMessage}</p>
+      `,
+    });
 
     if (ownerEmailError) {
       console.error("Resend contact email error:", ownerEmailError);
@@ -185,39 +195,38 @@ export async function POST(request: Request) {
       );
     }
 
-    const { error: confirmationEmailError } =
-      await resend.emails.send({
-        from: "Darek Dowsett <darek@azheartsinhomes.com>",
-        to: email,
-        subject: "Thank You for Contacting AZ Hearts In Homes",
-        html: `
-          <h2>Thank You!</h2>
+    const { error: confirmationEmailError } = await resend.emails.send({
+      from: "Darek Dowsett <darek@azheartsinhomes.com>",
+      to: email,
+      subject: "Thank You for Contacting AZ Hearts In Homes",
+      html: `
+        <h2>Thank You!</h2>
 
-          <p>Hi ${safeName},</p>
+        <p>Hi ${safeName},</p>
 
-          <p>
-            Thank you for reaching out to
-            <strong>AZ Hearts In Homes</strong>.
-          </p>
+        <p>
+          Thank you for reaching out to
+          <strong>AZ Hearts In Homes</strong>.
+        </p>
 
-          <p>
-            I've received your message and will get back to you
-            as soon as possible.
-          </p>
+        <p>
+          I've received your message and will get back to you
+          as soon as possible.
+        </p>
 
-          <p>
-            I appreciate the opportunity to help with your real
-            estate needs.
-          </p>
+        <p>
+          I appreciate the opportunity to help with your real
+          estate needs.
+        </p>
 
-          <br />
+        <br />
 
-          <strong>Darek Dowsett</strong><br />
-          AZ Hearts In Homes<br />
-          Real Estate With Heart<br />
-          (480) 773-3213
-        `,
-      });
+        <strong>Darek Dowsett</strong><br />
+        AZ Hearts In Homes<br />
+        Real Estate With Heart<br />
+        (480) 773-3213
+      `,
+    });
 
     if (confirmationEmailError) {
       console.error(
