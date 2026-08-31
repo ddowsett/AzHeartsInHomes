@@ -18,6 +18,26 @@ export const metadata: Metadata = {
   title: "About Darek Dowsett | Phoenix AZ Realtor",
   description:
     "Meet Darek Dowsett of AZ Hearts In Homes. Learn about his approach to real estate, professional experience, commitment to personal service, and perspective on helping Arizona buyers and sellers.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    type: "profile",
+    url: "https://azheartsinhomes.com/about",
+    title: "About Darek Dowsett | Phoenix AZ Realtor",
+    description:
+      "Meet Darek Dowsett of AZ Hearts In Homes and learn about his approach to full-service real estate representation in the Greater Phoenix area.",
+    siteName: "AZ Hearts In Homes",
+    locale: "en_US",
+    images: [
+      {
+        url: "/images/headshot.jpg",
+        width: 800,
+        height: 900,
+        alt: "Darek Dowsett, Phoenix AZ REALTOR®",
+      },
+    ],
+  },
 };
 
 export default function AboutPage() {
