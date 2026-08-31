@@ -1,21 +1,28 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Darek Dowsett | AZ Hearts In Homes",
+  title: "Contact a Phoenix AZ Realtor | AZ Hearts In Homes",
   description:
-    "Contact Darek Dowsett for help buying or selling a home in the Greater Phoenix area. Get honest guidance and full-service real estate representation from start to finish.",
+    "Contact REALTOR® Darek Dowsett about buying or selling a home in Phoenix and the Greater Phoenix area. Get personal, full-service real estate guidance from first conversation through closing.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
     type: "website",
     url: "https://azheartsinhomes.com/contact",
-    title: "Contact Darek Dowsett | AZ Hearts In Homes",
+    title: "Contact a Phoenix AZ Realtor | AZ Hearts In Homes",
     description:
-      "Contact Darek Dowsett for help buying or selling a home in the Greater Phoenix area. Get honest guidance and full-service real estate representation from start to finish.",
+      "Talk with Darek Dowsett about buying, selling, or your next real estate decision in the Greater Phoenix area.",
     siteName: "AZ Hearts In Homes",
     locale: "en_US",
-    images: [{ url: "/images/hearthome-new.png", width: 512, height: 512, alt: "AZ Hearts In Homes" }],
+    images: [
+      {
+        url: "/images/hearthome-new.png",
+        width: 512,
+        height: 512,
+        alt: "AZ Hearts In Homes",
+      },
+    ],
   },
 };
 
