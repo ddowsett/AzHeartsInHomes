@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  Baseball,
   CheckCircle2,
   Dices,
   Home,
@@ -170,7 +169,7 @@ export default function SurprisePage() {
           <div className="grid gap-8 md:grid-cols-3">
             {[
               {
-                icon: Baseball,
+                icon: Home,
                 title: "Spring Training Baseball",
                 text:
                   "Surprise Stadium is the Spring Training home of the Kansas City Royals and Texas Rangers, giving baseball fans Major League Baseball close to home each spring.",
@@ -230,7 +229,7 @@ export default function SurprisePage() {
 
           <Card className="rounded-3xl border-orange-100 bg-orange-50">
             <CardContent className="p-8 md:p-10">
-              <Baseball className="h-12 w-12 text-orange-500" />
+              <Home className="h-12 w-12 text-orange-500" />
 
               <h3 className="mt-6 text-3xl font-bold">
                 Two Major League Teams. One Surprise Home.
