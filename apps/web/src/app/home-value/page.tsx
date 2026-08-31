@@ -19,13 +19,36 @@ import { Textarea } from "@/components/ui/textarea";
 
 const turnstileSiteKey = "0x4AAAAAAEf0IbTnvduq82kh";
 
+type TurnstileInstance = {
+  render: (
+    container: HTMLElement,
+    options: {
+      sitekey: string;
+      action?: string;
+      callback: (token: string) => void;
+      "expired-callback": () => void;
+      "error-callback": () => void;
+    }
+  ) => string;
+  getResponse: (widgetId?: string) => string;
+  reset: (widgetId?: string) => void;
+  remove: (widgetId: string) => void;
+};
+
+declare global {
+  interface Window {
+    turnstile?: TurnstileInstance;
+  }
+}
+
 export default function HomeValuePage() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [turnstileReady, setTurnstileReady] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState("");
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
-  const turnstileWidgetId = useRef<string | null>(null);
+  const turnstileWidgetIdRef = useRef<string | null>(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -42,51 +65,44 @@ export default function HomeValuePage() {
     address: "",
   });
 
-  function renderTurnstile() {
+  useEffect(() => {
     if (
-      !window.turnstile ||
+      !turnstileReady ||
       !turnstileContainerRef.current ||
-      turnstileWidgetId.current !== null
+      !window.turnstile ||
+      turnstileWidgetIdRef.current
     ) {
       return;
     }
 
-    const widgetId = window.turnstile.render(
+    turnstileWidgetIdRef.current = window.turnstile.render(
       turnstileContainerRef.current,
       {
         sitekey: turnstileSiteKey,
+        action: "home_value",
         callback: (token) => {
           setTurnstileToken(token);
           setError("");
         },
-        "expired-callback": () => setTurnstileToken(""),
+        "expired-callback": () => {
+          setTurnstileToken("");
+        },
         "error-callback": () => {
           setTurnstileToken("");
           setError(
-            "The security check could not be loaded. Please refresh and try again."
+            "The security check could not be loaded. Please refresh the page and try again."
           );
         },
       }
     );
 
-    turnstileWidgetId.current = String(widgetId);
-  }
-
-  useEffect(() => {
-    if (window.turnstile) {
-      renderTurnstile();
-      return;
-    }
-
-    const interval = window.setInterval(() => {
-      if (window.turnstile) {
-        renderTurnstile();
-        window.clearInterval(interval);
+    return () => {
+      if (turnstileWidgetIdRef.current && window.turnstile) {
+        window.turnstile.remove(turnstileWidgetIdRef.current);
+        turnstileWidgetIdRef.current = null;
       }
-    }, 100);
-
-    return () => window.clearInterval(interval);
-  }, []);
+    };
+  }, [turnstileReady]);
 
   function validate() {
     const newErrors = {
@@ -118,7 +134,6 @@ export default function HomeValuePage() {
     }
 
     setErrors(newErrors);
-
     return valid;
   }
 
@@ -130,7 +145,12 @@ export default function HomeValuePage() {
       return;
     }
 
-    if (!turnstileToken) {
+    const currentTurnstileToken =
+      turnstileWidgetIdRef.current && window.turnstile
+        ? window.turnstile.getResponse(turnstileWidgetIdRef.current)
+        : turnstileToken;
+
+    if (!currentTurnstileToken) {
       setError("Please complete the security check and try again.");
       return;
     }
@@ -145,7 +165,7 @@ export default function HomeValuePage() {
         },
         body: JSON.stringify({
           ...form,
-          turnstileToken,
+          turnstileToken: currentTurnstileToken,
         }),
       });
 
@@ -156,7 +176,6 @@ export default function HomeValuePage() {
       }
 
       setSubmitted(true);
-
       setForm({
         name: "",
         email: "",
@@ -165,6 +184,7 @@ export default function HomeValuePage() {
         address: "",
         comments: "",
       });
+      setErrors({ name: "", email: "", address: "" });
     } catch (err) {
       setError(
         err instanceof Error
@@ -175,8 +195,8 @@ export default function HomeValuePage() {
       setLoading(false);
       setTurnstileToken("");
 
-      if (window.turnstile && turnstileWidgetId.current !== null) {
-        window.turnstile.reset(turnstileWidgetId.current);
+      if (window.turnstile && turnstileWidgetIdRef.current) {
+        window.turnstile.reset(turnstileWidgetIdRef.current);
       }
     }
   }
@@ -186,7 +206,12 @@ export default function HomeValuePage() {
       <Script
         src="https://challenges.cloudflare.com/turnstile/v0/api.js"
         strategy="afterInteractive"
-        onLoad={renderTurnstile}
+        onLoad={() => setTurnstileReady(true)}
+        onError={() => {
+          setError(
+            "The security check could not be loaded. Please refresh the page and try again."
+          );
+        }}
       />
 
       <main className="bg-background">
@@ -196,7 +221,7 @@ export default function HomeValuePage() {
               FREE HOME VALUE
             </p>
             <h1 className="mt-6 text-5xl font-bold leading-tight text-foreground md:text-6xl">
-              What's Your Home Worth?
+              What&apos;s Your Home Worth?
             </h1>
             <p className="mt-8 text-xl leading-9 text-muted-foreground">
               Receive a complimentary Comparative Market Analysis prepared
@@ -229,14 +254,14 @@ export default function HomeValuePage() {
             <CardContent className="p-10">
               <h2 className="text-3xl font-bold">Request Your Complimentary Home Valuation</h2>
               <p className="mt-4 text-muted-foreground">
-                Complete the information below and I'll prepare a personalized market analysis for your property.
+                Complete the information below and I&apos;ll prepare a personalized market analysis for your property.
               </p>
 
               {submitted && (
                 <div className="mt-8 rounded-2xl border border-green-200 bg-green-50 p-6">
                   <h3 className="text-2xl font-bold text-green-700">Thank You!</h3>
                   <p className="mt-3 leading-7 text-green-700">
-                    Your request has been received successfully. I'll personally prepare your complimentary
+                    Your request has been received successfully. I&apos;ll personally prepare your complimentary
                     Comparative Market Analysis and contact you soon.
                   </p>
                 </div>
@@ -291,12 +316,12 @@ export default function HomeValuePage() {
                   />
                 </div>
 
-                <div ref={turnstileContainerRef} className="min-h-[65px]" />
+                <div ref={turnstileContainerRef} className="min-h-[65px]" aria-label="Security verification" />
 
                 <Button
                   type="submit"
                   size="lg"
-                  disabled={loading || !turnstileToken}
+                  disabled={loading}
                   className="px-10"
                 >
                   {loading ? "Sending Request..." : "Request My Free Home Value"}
@@ -311,7 +336,7 @@ export default function HomeValuePage() {
             <h2 className="text-4xl font-bold">Why Request A Home Value From Me?</h2>
             <p className="mt-8 text-lg leading-8 text-muted-foreground">
               Online estimates can be useful as a starting point, but they often miss the unique features,
-              upgrades, location, and condition that influence a home's true market value.
+              upgrades, location, and condition that influence a home&apos;s true market value.
             </p>
             <div className="mt-12 space-y-5 text-left md:text-center">
               {[
