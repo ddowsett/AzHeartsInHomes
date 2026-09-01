@@ -60,22 +60,19 @@ export default function SellersPage() {
             Your home is one of your largest investments. My goal is to help
             you maximize your proceeds through professional marketing,
             experienced negotiation, and reduced listing compensation that
-            helps many Arizona homeowners keep more of what they've earned.
+            helps many Arizona homeowners keep more of what they&apos;ve earned.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
-            <Link href="/home-value">
+            <Link href="/sell-your-home-for-1-percent">
               <Button size="lg">
-                Request Your Home Value
+                Sell For 1% — Learn More
               </Button>
             </Link>
 
-            <Link href="/contact">
-              <Button
-                size="lg"
-                variant="outline"
-              >
-                Schedule a Consultation
+            <Link href="/home-value">
+              <Button size="lg" variant="outline">
+                Request Your Home Value
               </Button>
             </Link>
           </div>
@@ -108,16 +105,14 @@ export default function SellersPage() {
               icon: ClipboardCheck,
               title: "Full-Service Representation",
               text:
-                "You'll work directly with me from consultation through closing—not a team you've never met.",
+                "You&apos;ll work directly with me from consultation through closing—not a team you&apos;ve never met.",
             },
           ].map((item) => (
             <Card key={item.title} className="rounded-3xl">
               <CardContent className="p-8">
                 <item.icon className="mb-6 h-12 w-12 text-orange-500" />
 
-                <h3 className="text-2xl font-bold">
-                  {item.title}
-                </h3>
+                <h3 className="text-2xl font-bold">{item.title}</h3>
 
                 <p className="mt-4 leading-8 text-muted-foreground">
                   {item.text}
@@ -136,56 +131,29 @@ export default function SellersPage() {
               WHAT TO EXPECT
             </p>
 
-            <h2 className="mt-4 text-5xl font-bold">
-              The Selling Process
-            </h2>
+            <h2 className="mt-4 text-5xl font-bold">The Selling Process</h2>
 
             <p className="mt-8 text-lg leading-8 text-muted-foreground">
-              I'll guide you through every step so you always know what comes
+              I&apos;ll guide you through every step so you always know what comes
               next.
             </p>
           </div>
 
           <div className="mt-20 grid gap-10 md:grid-cols-3 xl:grid-cols-6">
             {[
-              {
-                icon: House,
-                title: "Consultation",
-              },
-              {
-                icon: LineChart,
-                title: "Pricing Strategy",
-              },
-              {
-                icon: Camera,
-                title: "Marketing",
-              },
-              {
-                icon: Handshake,
-                title: "Offers",
-              },
-              {
-                icon: ClipboardCheck,
-                title: "Escrow",
-              },
-              {
-                icon: CheckCircle2,
-                title: "Closing",
-              },
+              { icon: House, title: "Consultation" },
+              { icon: LineChart, title: "Pricing Strategy" },
+              { icon: Camera, title: "Marketing" },
+              { icon: Handshake, title: "Offers" },
+              { icon: ClipboardCheck, title: "Escrow" },
+              { icon: CheckCircle2, title: "Closing" },
             ].map((step, index) => (
-              <div
-                key={step.title}
-                className="text-center"
-              >
+              <div key={step.title} className="text-center">
                 <step.icon className="mx-auto h-12 w-12 text-orange-500" />
 
-                <div className="mt-4 text-2xl font-bold">
-                  {index + 1}
-                </div>
+                <div className="mt-4 text-2xl font-bold">{index + 1}</div>
 
-                <h3 className="mt-3 font-semibold">
-                  {step.title}
-                </h3>
+                <h3 className="mt-3 font-semibold">{step.title}</h3>
               </div>
             ))}
           </div>
@@ -208,7 +176,7 @@ export default function SellersPage() {
 
             <p className="mt-8 text-lg leading-8 text-muted-foreground">
               My philosophy is simple: provide exceptional service while
-              helping many sellers retain more of the equity they've worked so
+              helping many sellers retain more of the equity they&apos;ve worked so
               hard to build.
             </p>
           </div>
@@ -224,15 +192,9 @@ export default function SellersPage() {
               "Contract management",
               "Closing coordination",
             ].map((item) => (
-              <div
-                key={item}
-                className="flex items-center gap-4"
-              >
+              <div key={item} className="flex items-center gap-4">
                 <CheckCircle2 className="h-6 w-6 text-orange-500" />
-
-                <span className="text-lg">
-                  {item}
-                </span>
+                <span className="text-lg">{item}</span>
               </div>
             ))}
           </div>
@@ -242,26 +204,33 @@ export default function SellersPage() {
       {/* CTA */}
       <section className="bg-stone-900 py-24 text-white">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-5xl font-bold">
-            Ready To Sell?
-          </h2>
+          <h2 className="text-5xl font-bold">Ready To Sell?</h2>
 
           <p className="mt-8 text-xl leading-9 text-stone-300">
-            Let's discuss your goals and create a strategy that helps maximize
-            your home's value while protecting more of your equity.
+            Let&apos;s discuss your goals and create a strategy that helps maximize
+            your home&apos;s value while protecting more of your equity.
           </p>
 
-          <Link
-            href="/contact"
-            className="mt-12 inline-block"
-          >
-            <Button
-              size="lg"
-              className="bg-orange-500 hover:bg-orange-600"
-            >
-              Schedule Your Consultation
-            </Button>
-          </Link>
+          <div className="mt-12 flex flex-wrap justify-center gap-4">
+            <Link href="/sell-your-home-for-1-percent">
+              <Button
+                size="lg"
+                className="bg-orange-500 hover:bg-orange-600"
+              >
+                Learn About The 1% Listing
+              </Button>
+            </Link>
+
+            <Link href="/contact">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white bg-transparent text-white hover:bg-white hover:text-stone-900"
+              >
+                Schedule Your Consultation
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </main>
