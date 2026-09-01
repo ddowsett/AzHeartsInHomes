@@ -13,6 +13,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import SellerSavingsCalculator from "@/components/SellerSavingsCalculator";
 
 export const metadata: Metadata = {
   title: "Sell Your Phoenix Home for 1% | AZ Hearts In Homes",
@@ -298,6 +299,9 @@ export default function SellYourHomeForOnePercentPage() {
           </p>
         </div>
       </section>
+
+      {/* Interactive Seller Savings Calculator */}
+      <SellerSavingsCalculator />
 
       {/* Process */}
       <section className="mx-auto max-w-7xl px-6 py-24">
