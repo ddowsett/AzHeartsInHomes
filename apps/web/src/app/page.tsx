@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 
-import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/home/Hero";
 import { Services } from "@/components/home/Services";
 import { Story } from "@/components/home/Story";
 import { Communities } from "@/components/home/Communities";
-
-
 
 export const metadata: Metadata = {
   title: "Phoenix AZ Realtor | AZ Hearts In Homes",
@@ -16,18 +13,12 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <>
-  
-
-      <main>
-        <Hero />
-        <Services />
-        <Story />
-        <Communities />
-        {/* <FeaturedListings /> */}
-      </main>
-
-      <Footer />
-    </>
+    <main>
+      <Hero />
+      <Services />
+      <Story />
+      <Communities />
+      {/* <FeaturedListings /> */}
+    </main>
   );
 }
