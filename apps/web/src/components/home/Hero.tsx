@@ -90,7 +90,7 @@ export function Hero() {
         <div className="flex flex-col items-center lg:items-end">
           <div className="w-full max-w-[580px] rounded-[2rem] bg-card p-1 shadow-2xl">
             <Image
-              src="/images/whiteDoorWelcome.jpg"
+              src="/images/HomepagePic.png"
               alt="Welcome Home"
               width={900}
               height={1100}
