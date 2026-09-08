@@ -2,6 +2,8 @@
 
 import { usePathname } from "next/navigation";
 
+import { CommunitySellerCTA } from "@/components/communities/CommunitySellerCTA";
+
 const heroImages: Record<string, string> = {
   "/communities/anthem": "/images/communities/DesertHomes.jpg",
   "/communities/cave-creek": "/images/communities/CaveCreek.jpg",
@@ -35,7 +37,10 @@ export function CommunityPageShell({ children }: { children: React.ReactNode }) 
         </div>
       )}
 
-      <div className="relative z-10">{children}</div>
+      <div className="relative z-10">
+        {children}
+        <CommunitySellerCTA />
+      </div>
     </div>
   );
 }
