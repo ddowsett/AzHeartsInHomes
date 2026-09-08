@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowRight, BadgeDollarSign } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -24,7 +25,7 @@ const communityNames: Record<string, string> = {
 };
 
 export function CommunitySellerCTA() {
-  const pathname = window.location.pathname;
+  const pathname = usePathname();
   const community = communityNames[pathname] ?? "Greater Phoenix";
 
   return (
