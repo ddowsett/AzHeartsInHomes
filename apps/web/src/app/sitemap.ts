@@ -39,6 +39,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/sell-your-home-for-1-percent`,
     },
     {
+      url: `${BASE_URL}/phoenix-real-estate-market`,
+    },
+    {
       url: `${BASE_URL}/communities`,
     },
     {
