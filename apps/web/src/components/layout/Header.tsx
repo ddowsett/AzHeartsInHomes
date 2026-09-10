@@ -57,10 +57,17 @@ export function Header() {
           </Link>
 
           <Link
-          href="/home-value"
-          className="font-serif text-[13px] text-slate-700 transition hover:text-orange-600"
+            href="/sell-your-home-for-1-percent"
+            className="font-serif text-[13px] font-semibold text-orange-600 transition hover:text-orange-700"
           >
-          Home Value
+            1% Listing Package
+          </Link>
+
+          <Link
+            href="/home-value"
+            className="font-serif text-[13px] text-slate-700 transition hover:text-orange-600"
+          >
+            Home Value
           </Link>
 
           <Link
