@@ -7,9 +7,9 @@ import { Services } from "@/components/home/Services";
 import { Story } from "@/components/home/Story";
 
 export const metadata: Metadata = {
-  title: "Phoenix AZ Realtor | AZ Hearts In Homes",
+  title: { absolute: "Phoenix Listing Agent | 1% Listing Fee | AZ Hearts In Homes" },
   description:
-    "Darek Dowsett provides full-service real estate representation for buyers and sellers throughout the Greater Phoenix area, with a focus on honest guidance and protecting your equity.",
+    "Full-service seller representation in Phoenix with a 1% listing-side fee. Buyer-agent compensation is negotiated separately.",
 };
 
 export default function HomePage() {
